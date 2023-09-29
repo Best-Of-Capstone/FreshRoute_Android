@@ -1,10 +1,10 @@
 package com.yong.freshroute
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private val btnListener = View.OnClickListener { view ->
         when(view.id) {
-            R.id.btn_main_search -> Toast.makeText(applicationContext, "Search Button", Toast.LENGTH_LONG).show()
+            R.id.btn_main_search -> startActivity(Intent(applicationContext, SearchActivity::class.java))
         }
     }
 }
