@@ -1,7 +1,8 @@
-package com.yong.freshroute
+package com.yong.freshroute.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.yong.freshroute.R
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
