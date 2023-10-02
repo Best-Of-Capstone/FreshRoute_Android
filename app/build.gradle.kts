@@ -20,15 +20,17 @@ android {
     }
 
     buildTypes {
+        all {
+            buildConfigField("String", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+            resValue("string", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            buildConfigField("String", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
-            resValue("string", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
         }
     }
     compileOptions {
