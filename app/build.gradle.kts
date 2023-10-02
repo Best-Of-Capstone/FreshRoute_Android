@@ -23,8 +23,8 @@ android {
 
     buildTypes {
         all {
-            buildConfigField("String", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
-            resValue("string", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+            buildConfigField("String", "KAKAO_APP_KEY", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+            resValue("string", "KAKAO_APP_KEY", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
         }
 
         release {

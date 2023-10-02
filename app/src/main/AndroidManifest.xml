@@ -6,7 +6,7 @@
 
     <meta-data
         android:name="com.kakao.vectormap.APP_KEY"
-        android:value="${APP_KEY}"/>
+        android:value="@string/KAKAO_APP_KEY"/>
 
     <application
         android:allowBackup="true"
