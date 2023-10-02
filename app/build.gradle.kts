@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -24,6 +26,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+            resValue("string", "API_KEY_NAME", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
         }
     }
     compileOptions {
