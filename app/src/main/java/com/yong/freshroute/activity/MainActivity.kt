@@ -1,10 +1,14 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.kakao.vectormap.KakaoMap
+import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.MapLifeCycleCallback
+import com.kakao.vectormap.MapView
 import com.yong.freshroute.R
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +18,15 @@ class MainActivity : AppCompatActivity() {
 
         val btnSearch = findViewById<Button>(R.id.btn_main_search)
         btnSearch.setOnClickListener(btnListener)
+
+        val mapView = findViewById<MapView>(R.id.map_main_view)
+        mapView.start(object : MapLifeCycleCallback() {
+            override fun onMapDestroy() {}
+
+            override fun onMapError(error: Exception) {}
+        }, object : KakaoMapReadyCallback() {
+            override fun onMapReady(kakaoMap: KakaoMap) {}
+        })
     }
 
     private val btnListener = View.OnClickListener { view ->
