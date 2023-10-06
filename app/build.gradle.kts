@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
     implementation("com.kakao.maps.open:android:2.6.0")
 
