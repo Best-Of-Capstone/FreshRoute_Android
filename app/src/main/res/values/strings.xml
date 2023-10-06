@@ -3,6 +3,8 @@
 
     <string name="noti_toast_no_permission">Location Permission is Needed.</string>
 
+    <string name="main_tv_search">Search</string>
+
     <string name="welcome_btn_location_permission">Grant Location Permission</string>
     <string name="welcome_btn_next">Next</string>
 </resources>
