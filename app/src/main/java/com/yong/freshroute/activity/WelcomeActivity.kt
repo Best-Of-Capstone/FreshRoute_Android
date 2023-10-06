@@ -47,16 +47,16 @@ class WelcomeActivity : AppCompatActivity() {
     private val requestLocationPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         if(ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
             || ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            btnLocatonPermission.isEnabled = false
-            btnNext.isEnabled = true
-        } else {
             Toast.makeText(applicationContext, applicationContext.getString(R.string.noti_toast_no_permission), Toast.LENGTH_LONG).show()
             val permissionIntent = Intent().apply {
                 action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                 addCategory(Intent.CATEGORY_DEFAULT)
-                data = Uri.parse("package:com.yong.taximeter")
+                data = Uri.parse("package:com.yong.freshroute")
             }
             applicationContext.startActivity(permissionIntent)
+        } else {
+            btnLocatonPermission.isEnabled = false
+            btnNext.isEnabled = true
         }
     }
 }
