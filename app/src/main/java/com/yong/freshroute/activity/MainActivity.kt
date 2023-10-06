@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var pref: SharedPreferences
 
-    private lateinit var mainBtnSearch: AppCompatButton
+    private lateinit var mainBtnSearch: LinearLayout
     private lateinit var mainMapView: MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
