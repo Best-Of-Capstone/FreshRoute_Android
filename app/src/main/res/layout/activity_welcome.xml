@@ -11,8 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_welcome_permission_location"
-        android:text="Grant Location Permission"
+        android:text="@string/welcome_btn_location_permission"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_welcome_next" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_welcome_next"
+        android:text="@string/welcome_btn_next"
+        app:layout_constraintTop_toBottomOf="@id/btn_welcome_permission_location"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
