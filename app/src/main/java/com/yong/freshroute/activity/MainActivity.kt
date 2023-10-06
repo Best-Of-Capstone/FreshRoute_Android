@@ -2,20 +2,26 @@ package com.yong.freshroute.activity
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.preference.PreferenceManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
+import com.kakao.vectormap.camera.CameraUpdateFactory
 import com.yong.freshroute.R
 import com.yong.freshroute.util.PermissionUtil.checkLocationPermission
 import com.yong.freshroute.util.PermissionUtil.openAppInfo
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var pref: SharedPreferences
 
     private lateinit var mainBtnSearch: AppCompatButton
@@ -34,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         mainBtnSearch.setOnClickListener(btnListener)
 
         mainMapView = findViewById(R.id.map_main_view)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
     }
 
     override fun onResume() {
@@ -47,7 +55,17 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onMapError(error: Exception) {}
             }, object : KakaoMapReadyCallback() {
-                override fun onMapReady(kakaoMap: KakaoMap) {}
+                override fun onMapReady(kakaoMap: KakaoMap) {
+                    if(checkLocationPermission(applicationContext)) {
+                        fusedLocationClient.lastLocation
+                            .addOnSuccessListener { curLocation : Location? ->
+                                if(curLocation != null){
+                                    val cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(curLocation.latitude, curLocation.longitude))
+                                    kakaoMap.moveCamera(cameraUpdate)
+                                }
+                            }
+                    }
+                }
             })
         }
     }
