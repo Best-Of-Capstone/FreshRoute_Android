@@ -40,6 +40,7 @@ class WelcomeActivity : AppCompatActivity() {
 
                 prefEditor.putBoolean("isFirst", false)
                 prefEditor.apply()
+                finish()
             }
         }
     }
