@@ -1,38 +1,55 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.preference.PreferenceManager
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
 import com.yong.freshroute.R
+import com.yong.freshroute.util.PermissionUtil.checkLocationPermission
+import com.yong.freshroute.util.PermissionUtil.openAppInfo
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var pref: SharedPreferences
+
+    private lateinit var mainBtnSearch: AppCompatButton
+    private lateinit var mainMapView: MapView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         if(pref.getBoolean("isFirst", true)) {
             startActivity(Intent(applicationContext, WelcomeActivity::class.java))
         }
 
-        val btnSearch = findViewById<Button>(R.id.btn_main_search)
-        btnSearch.setOnClickListener(btnListener)
+        mainBtnSearch = findViewById(R.id.btn_main_search)
+        mainBtnSearch.setOnClickListener(btnListener)
 
-        val mapView = findViewById<MapView>(R.id.map_main_view)
-        mapView.start(object : MapLifeCycleCallback() {
-            override fun onMapDestroy() {}
+        mainMapView = findViewById(R.id.map_main_view)
+    }
 
-            override fun onMapError(error: Exception) {}
-        }, object : KakaoMapReadyCallback() {
-            override fun onMapReady(kakaoMap: KakaoMap) {}
-        })
+    override fun onResume() {
+        super.onResume()
+
+        if(!checkLocationPermission(applicationContext)) {
+            openAppInfo(applicationContext)
+        } else {
+            mainMapView.start(object : MapLifeCycleCallback() {
+                override fun onMapDestroy() {}
+
+                override fun onMapError(error: Exception) {}
+            }, object : KakaoMapReadyCallback() {
+                override fun onMapReady(kakaoMap: KakaoMap) {}
+            })
+        }
     }
 
     private val btnListener = View.OnClickListener { view ->
