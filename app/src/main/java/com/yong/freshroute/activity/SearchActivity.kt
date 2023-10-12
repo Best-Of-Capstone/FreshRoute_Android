@@ -13,12 +13,15 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         val btnDetail = findViewById<Button>(R.id.btn_search_detail)
+        val btnInput = findViewById<Button>(R.id.btn_search_input)
         btnDetail.setOnClickListener(btnListener)
+        btnInput.setOnClickListener(btnListener)
     }
 
     private val btnListener = View.OnClickListener { view ->
         when(view.id) {
             R.id.btn_search_detail -> startActivity(Intent(applicationContext, DetailActivity::class.java))
+            R.id.btn_search_input -> startActivity(Intent(applicationContext, SearchInputActivity::class.java))
         }
     }
 }
