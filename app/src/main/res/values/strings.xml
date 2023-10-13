@@ -8,6 +8,7 @@
     <string name="search_btn_done">Search !</string>
     <string name="search_btn_input_from">From Where?</string>
     <string name="search_btn_input_to">To Where?</string>
+    <string name="search_toolbar_title">Find Route</string>
 
     <string name="welcome_btn_location_permission">Grant Location Permission</string>
     <string name="welcome_btn_next">Next</string>
