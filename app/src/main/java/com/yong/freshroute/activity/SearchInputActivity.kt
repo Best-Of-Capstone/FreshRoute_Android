@@ -9,6 +9,7 @@ import com.yong.freshroute.util.Enums
 
 class SearchInputActivity : AppCompatActivity() {
     private lateinit var inputType: Enums
+    var inputData = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_input)
@@ -25,8 +26,12 @@ class SearchInputActivity : AppCompatActivity() {
         super.onBackPressed()
         val resultIntent = Intent(applicationContext, SearchActivity::class.java)
         resultIntent.putExtra("type", inputType)
-        resultIntent.putExtra("input", "chungang-univ")
-        setResult(RESULT_OK, resultIntent)
+        if(inputData.length > 0){
+            resultIntent.putExtra("input", "chungang-univ")
+            setResult(RESULT_OK, resultIntent)
+        }else{
+            setResult(RESULT_CANCELED, resultIntent)
+        }
         finish()
     }
 }
