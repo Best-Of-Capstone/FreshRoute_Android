@@ -15,7 +15,7 @@
         android:background="@drawable/btn_main_search"
         android:orientation="horizontal"
         android:id="@+id/btn_search_input_from"
-        app:layout_constraintBottom_toTopOf="@id/btn_search_detail"
+        app:layout_constraintBottom_toTopOf="@id/btn_search_input_to"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,10 +45,9 @@
         android:background="@drawable/btn_main_search"
         android:orientation="horizontal"
         android:id="@+id/btn_search_input_to"
-        app:layout_constraintBottom_toTopOf="@id/btn_search_input_from"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/btn_search_input_from">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -75,7 +74,6 @@
         android:id="@+id/btn_search_detail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_search_input_to" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
