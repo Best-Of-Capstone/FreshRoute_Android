@@ -10,9 +10,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Input"
-        android:id="@+id/btn_search_input"
+        android:text="Search Input From"
+        android:id="@+id/btn_search_input_from"
         app:layout_constraintBottom_toTopOf="@id/btn_search_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Input To"
+        android:id="@+id/btn_search_input_to"
+        app:layout_constraintBottom_toTopOf="@id/btn_search_input_from"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +35,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_search_input" />
+        app:layout_constraintTop_toBottomOf="@id/btn_search_input_to" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
