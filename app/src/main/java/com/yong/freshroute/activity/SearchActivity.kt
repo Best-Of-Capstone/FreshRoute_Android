@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatButton
 import com.yong.freshroute.R
 import com.yong.freshroute.util.Enums
 
@@ -17,9 +18,9 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val btnDetail = findViewById<Button>(R.id.btn_search_detail)
-        val btnInputFrom = findViewById<Button>(R.id.btn_search_input_from)
-        val btnInputTo = findViewById<Button>(R.id.btn_search_input_to)
+        val btnDetail = findViewById<AppCompatButton>(R.id.btn_search_detail)
+        val btnInputFrom = findViewById<LinearLayout>(R.id.btn_search_input_from)
+        val btnInputTo = findViewById<LinearLayout>(R.id.btn_search_input_to)
         btnDetail.setOnClickListener(btnListener)
         btnInputFrom.setOnClickListener(btnListener)
         btnInputTo.setOnClickListener(btnListener)
