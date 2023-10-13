@@ -34,9 +34,11 @@ class SearchActivity : AppCompatActivity() {
 
         activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
+            if (result.resultCode == RESULT_OK && result.data != null) {
                 val inputStr = result.data!!.getStringExtra("input")
                 Toast.makeText(applicationContext, inputStr, Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(applicationContext, "Noting Inputted", Toast.LENGTH_LONG).show()
             }
         }
     }
