@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import com.yong.freshroute.R
 import com.yong.freshroute.util.Enums
-import com.yong.freshroute.util.SearchData
+import com.yong.freshroute.util.LocationData
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -37,12 +37,12 @@ class SearchActivity : AppCompatActivity() {
         activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
-                val inputData: SearchData
+                val inputData: LocationData
                 if(Build.VERSION.SDK_INT >= 33){
-                    inputData = result.data!!.getSerializableExtra("data", SearchData::class.java)!!
+                    inputData = result.data!!.getSerializableExtra("data", LocationData::class.java)!!
                 }else{
                     @Suppress("DEPRECATION")
-                    inputData = result.data!!.getSerializableExtra("data") as SearchData
+                    inputData = result.data!!.getSerializableExtra("data") as LocationData
                 }
                 Toast.makeText(applicationContext, inputData.Name, Toast.LENGTH_LONG).show()
             }else{

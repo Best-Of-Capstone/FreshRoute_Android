@@ -10,13 +10,13 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yong.freshroute.R
 import com.yong.freshroute.util.Enums
-import com.yong.freshroute.util.SearchData
+import com.yong.freshroute.util.LocationData
 
 class SearchInputActivity : AppCompatActivity() {
     private lateinit var btnSearch: MaterialButton
     private lateinit var edSearchKeyword: TextInputEditText
 
-    private lateinit var inputData: SearchData
+    private lateinit var inputData: LocationData
     private lateinit var inputType: Enums
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class SearchInputActivity : AppCompatActivity() {
     private val btnListener = View.OnClickListener { view ->
         when(view.id) {
             R.id.btn_searchinput_search -> {
-                inputData = SearchData("Name", "Address", 1.0, 1.0)
+                inputData = LocationData("Name", "Address", 1.0, 1.0)
 
                 val resultIntent = Intent(applicationContext, SearchActivity::class.java)
                 resultIntent.putExtra("data", inputData)
