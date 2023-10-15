@@ -43,12 +43,22 @@ class SearchActivity : AppCompatActivity() {
                 val inputType: SearchTypes
                 if(Build.VERSION.SDK_INT >= 33){
                     inputData = result.data!!.getSerializableExtra("data", LocationData::class.java)!!
+                    inputType = result.data!!.getSerializableExtra("type", SearchTypes::class.java)!!
                 }else{
                     @Suppress("DEPRECATION")
                     inputData = result.data!!.getSerializableExtra("data") as LocationData
+                    @Suppress("DEPRECATION")
+                    inputType = result.data!!.getSerializableExtra("type") as SearchTypes
                 }
 
-                Toast.makeText(applicationContext, inputData.Name, Toast.LENGTH_LONG).show()
+                if(inputType == SearchTypes.SEARCH_INPUT_FROM){
+                    locationDataFrom = inputData
+                    Toast.makeText(applicationContext, "From ${locationDataFrom.Name}", Toast.LENGTH_LONG).show()
+                }else{
+                    locationDataTo = inputData
+                    Toast.makeText(applicationContext, "To ${locationDataTo.Name}", Toast.LENGTH_LONG).show()
+                }
+
             }else{
                 Toast.makeText(applicationContext, "Noting Inputted", Toast.LENGTH_LONG).show()
             }
@@ -57,7 +67,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            android.R.id.home -> onBackPressed()
+            android.R.id.home -> this.onBackPressedDispatcher.onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }
