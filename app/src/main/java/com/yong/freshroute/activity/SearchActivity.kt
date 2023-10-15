@@ -13,11 +13,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import com.yong.freshroute.R
-import com.yong.freshroute.util.Enums
 import com.yong.freshroute.util.LocationData
+import com.yong.freshroute.util.SearchTypes
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var locationDataFrom: LocationData
+    private lateinit var locationDataTo: LocationData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -38,12 +40,14 @@ class SearchActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
                 val inputData: LocationData
+                val inputType: SearchTypes
                 if(Build.VERSION.SDK_INT >= 33){
                     inputData = result.data!!.getSerializableExtra("data", LocationData::class.java)!!
                 }else{
                     @Suppress("DEPRECATION")
                     inputData = result.data!!.getSerializableExtra("data") as LocationData
                 }
+
                 Toast.makeText(applicationContext, inputData.Name, Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(applicationContext, "Noting Inputted", Toast.LENGTH_LONG).show()
@@ -63,12 +67,12 @@ class SearchActivity : AppCompatActivity() {
             R.id.btn_search_detail -> startActivity(Intent(applicationContext, DetailActivity::class.java))
             R.id.btn_search_input_from -> {
                 intent = Intent(applicationContext, SearchInputActivity::class.java)
-                intent.putExtra("type", Enums.SEARCH_INPUT_FROM)
+                intent.putExtra("type", SearchTypes.SEARCH_INPUT_FROM)
                 activityResultLauncher.launch(intent)
             }
             R.id.btn_search_input_to -> {
                 intent = Intent(applicationContext, SearchInputActivity::class.java)
-                intent.putExtra("type", Enums.SEARCH_INPUT_TO)
+                intent.putExtra("type", SearchTypes.SEARCH_INPUT_TO)
                 activityResultLauncher.launch(intent)
             }
         }

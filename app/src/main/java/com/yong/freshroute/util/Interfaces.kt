@@ -8,3 +8,8 @@ data class LocationData(
     var Latitude: Number,
     var Longitude: Number
 ): Serializable
+
+enum class SearchTypes {
+    SEARCH_INPUT_FROM,
+    SEARCH_INPUT_TO
+}

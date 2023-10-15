@@ -9,15 +9,15 @@ import androidx.activity.addCallback
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yong.freshroute.R
-import com.yong.freshroute.util.Enums
 import com.yong.freshroute.util.LocationData
+import com.yong.freshroute.util.SearchTypes
 
 class SearchInputActivity : AppCompatActivity() {
     private lateinit var btnSearch: MaterialButton
     private lateinit var edSearchKeyword: TextInputEditText
 
     private lateinit var inputData: LocationData
-    private lateinit var inputType: Enums
+    private lateinit var inputType: SearchTypes
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +28,10 @@ class SearchInputActivity : AppCompatActivity() {
         btnSearch.setOnClickListener(btnListener)
 
         if(Build.VERSION.SDK_INT >= 33){
-            inputType = intent.getSerializableExtra("type", Enums::class.java)!!
+            inputType = intent.getSerializableExtra("type", SearchTypes::class.java)!!
         }else{
             @Suppress("DEPRECATION")
-            inputType = intent.getSerializableExtra("type") as Enums
+            inputType = intent.getSerializableExtra("type") as SearchTypes
         }
 
         this.onBackPressedDispatcher.addCallback(this) {
