@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,10 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var locationDataFrom: LocationData
     private lateinit var locationDataTo: LocationData
+
+    private lateinit var tvInputFrom: TextView
+    private lateinit var tvInputTo: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -35,6 +40,9 @@ class SearchActivity : AppCompatActivity() {
         btnDetail.setOnClickListener(btnListener)
         btnInputFrom.setOnClickListener(btnListener)
         btnInputTo.setOnClickListener(btnListener)
+
+        tvInputFrom = findViewById(R.id.tv_search_input_from)
+        tvInputTo = findViewById(R.id.tv_search_input_to)
 
         activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
@@ -53,10 +61,10 @@ class SearchActivity : AppCompatActivity() {
 
                 if(inputType == SearchTypes.SEARCH_INPUT_FROM){
                     locationDataFrom = inputData
-                    Toast.makeText(applicationContext, "From ${locationDataFrom.Name}", Toast.LENGTH_LONG).show()
+                    tvInputFrom.text = locationDataFrom.Name
                 }else{
                     locationDataTo = inputData
-                    Toast.makeText(applicationContext, "To ${locationDataTo.Name}", Toast.LENGTH_LONG).show()
+                    tvInputTo.text = locationDataTo.Name
                 }
 
             }else{
