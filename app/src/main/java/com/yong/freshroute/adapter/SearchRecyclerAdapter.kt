@@ -11,7 +11,7 @@ import com.yong.freshroute.util.KakaoLocalItem
 
 class SearchRecyclerAdapter(dataList: List<KakaoLocalItem>): Adapter<SearchRecyclerAdapter.ViewHolder>() {
     private val dataList: List<KakaoLocalItem>
-    private var itemClick: ItemClick? = null
+    var itemClick: ItemClick? = null
 
     init {
         this.dataList = dataList
