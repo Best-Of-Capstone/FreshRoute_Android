@@ -9,8 +9,8 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.button.MaterialButton
 import com.yong.freshroute.R
 import com.yong.freshroute.util.Enums
 
@@ -25,7 +25,7 @@ class SearchActivity : AppCompatActivity() {
         supportActionBar!!.title = getString(R.string.search_toolbar_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val btnDetail = findViewById<AppCompatButton>(R.id.btn_search_detail)
+        val btnDetail = findViewById<MaterialButton>(R.id.btn_search_detail)
         val btnInputFrom = findViewById<LinearLayout>(R.id.btn_search_input_from)
         val btnInputTo = findViewById<LinearLayout>(R.id.btn_search_input_to)
         btnDetail.setOnClickListener(btnListener)
