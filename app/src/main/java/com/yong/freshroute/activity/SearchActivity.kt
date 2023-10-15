@@ -1,6 +1,7 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import com.yong.freshroute.R
 import com.yong.freshroute.util.Enums
+import com.yong.freshroute.util.SearchData
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -35,8 +37,14 @@ class SearchActivity : AppCompatActivity() {
         activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
-                val inputStr = result.data!!.getStringExtra("input")
-                Toast.makeText(applicationContext, inputStr, Toast.LENGTH_LONG).show()
+                val inputData: SearchData
+                if(Build.VERSION.SDK_INT >= 33){
+                    inputData = result.data!!.getSerializableExtra("data", SearchData::class.java)!!
+                }else{
+                    @Suppress("DEPRECATION")
+                    inputData = result.data!!.getSerializableExtra("data") as SearchData
+                }
+                Toast.makeText(applicationContext, inputData.Name, Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(applicationContext, "Noting Inputted", Toast.LENGTH_LONG).show()
             }
