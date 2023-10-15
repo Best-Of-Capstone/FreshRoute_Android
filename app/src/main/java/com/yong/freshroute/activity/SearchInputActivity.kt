@@ -5,13 +5,19 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yong.freshroute.R
+import com.yong.freshroute.util.KakaoLocalClient
+import com.yong.freshroute.util.KakaoLocalList
 import com.yong.freshroute.util.LocationData
 import com.yong.freshroute.util.SearchTypes
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchInputActivity : AppCompatActivity() {
     private lateinit var btnSearch: MaterialButton
@@ -48,13 +54,43 @@ class SearchInputActivity : AppCompatActivity() {
     private val btnListener = View.OnClickListener { view ->
         when(view.id) {
             R.id.btn_searchinput_search -> {
-                inputData = LocationData("Name", "Address", 1.0, 1.0)
+                val inputStr = edSearchKeyword.text.toString()
+                if(inputStr.isEmpty()){
+                    Toast.makeText(applicationContext, getString(R.string.searchinput_noti_wrong_input), Toast.LENGTH_LONG).show()
+                    return@OnClickListener
+                }
 
-                val resultIntent = Intent(applicationContext, SearchActivity::class.java)
-                resultIntent.putExtra("data", inputData)
-                resultIntent.putExtra("type", inputType)
-                setResult(RESULT_OK, resultIntent)
-                finish()
+                KakaoLocalClient.kakaoLocalService
+                    .getLocalList("KakaoAK ${getString(R.string.KAKAO_REST_API_KEY)}", inputStr)
+                    .enqueue(object: Callback<KakaoLocalList> {
+                        override fun onResponse(call: Call<KakaoLocalList>, response: Response<KakaoLocalList>){
+                            if(response.isSuccessful.not()) {
+                                Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
+                                return
+                            }else{
+                                val resultList = response.body()!!.dataList
+                                if(resultList.isEmpty()){
+                                    Toast.makeText(applicationContext, getString(R.string.searchinput_noti_no_result), Toast.LENGTH_LONG).show()
+                                    return
+                                }
+
+                                inputData = LocationData(resultList[0].localName,
+                                    resultList[0].localAddress,
+                                    resultList[0].localLatitude.toDouble(),
+                                    resultList[0].localLongitude.toDouble())
+
+                                val resultIntent = Intent(applicationContext, SearchActivity::class.java)
+                                resultIntent.putExtra("data", inputData)
+                                resultIntent.putExtra("type", inputType)
+                                setResult(RESULT_OK, resultIntent)
+                                finish()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<KakaoLocalList>, t: Throwable) {
+                            Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), t.message.toString()), Toast.LENGTH_LONG).show()
+                        }
+                    })
             }
         }
     }
