@@ -4,12 +4,13 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.addCallback
 import com.yong.freshroute.R
 import com.yong.freshroute.util.Enums
 
 class SearchInputActivity : AppCompatActivity() {
     private lateinit var inputType: Enums
-    var inputData = ""
+    private var inputData = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_input)
@@ -20,18 +21,17 @@ class SearchInputActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             inputType = intent.getSerializableExtra("type") as Enums
         }
-    }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val resultIntent = Intent(applicationContext, SearchActivity::class.java)
-        resultIntent.putExtra("type", inputType)
-        if(inputData.length > 0){
-            resultIntent.putExtra("input", "chungang-univ")
-            setResult(RESULT_OK, resultIntent)
-        }else{
-            setResult(RESULT_CANCELED, resultIntent)
+        this.onBackPressedDispatcher.addCallback(this) {
+            val resultIntent = Intent(applicationContext, SearchActivity::class.java)
+            resultIntent.putExtra("type", inputType)
+            if(inputData.isNotEmpty()){
+                resultIntent.putExtra("input", "chungang-univ")
+                setResult(RESULT_OK, resultIntent)
+            }else{
+                setResult(RESULT_CANCELED, resultIntent)
+            }
+            finish()
         }
-        finish()
     }
 }
