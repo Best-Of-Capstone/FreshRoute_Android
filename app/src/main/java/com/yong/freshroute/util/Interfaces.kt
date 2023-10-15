@@ -1,6 +1,11 @@
 package com.yong.freshroute.util
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Header
 import java.io.Serializable
 
 data class LocationData(
@@ -13,6 +18,15 @@ data class LocationData(
 enum class SearchTypes {
     SEARCH_INPUT_FROM,
     SEARCH_INPUT_TO
+}
+
+interface KakaoLocalAPI {
+    @GET("v2/local/search/keyword.JSON")
+    @FormUrlEncoded
+    fun getLocalList(
+        @Header("Authorization") apiKey: String,
+        @Field("query") queryString : String
+    ): Call<KakaoLocalList>
 }
 
 data class KakaoLocalList(
