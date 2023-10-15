@@ -87,6 +87,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_search_input_to">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/search_title_fresh_transportation" />
+
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,6 +120,14 @@
                 style="?attr/materialButtonOutlinedStyle" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/search_title_fresh_congestion" />
 
         <com.google.android.material.slider.Slider
             android:layout_width="match_parent"
