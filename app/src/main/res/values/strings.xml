@@ -15,6 +15,9 @@
     <string name="search_toolbar_title">Find Route</string>
 
     <string name="searchinput_btn_search">Search</string>
+    <string name="searchinput_noti_error">Error: %s</string>
+    <string name="searchinput_noti_no_result">No Search Result</string>
+    <string name="searchinput_noti_wrong_input">Wrong Input</string>
 
     <string name="welcome_btn_location_permission">Grant Location Permission</string>
     <string name="welcome_btn_next">Next</string>
