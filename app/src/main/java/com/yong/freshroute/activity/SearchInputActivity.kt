@@ -15,7 +15,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.yong.freshroute.R
 import com.yong.freshroute.adapter.SearchRecyclerAdapter
 import com.yong.freshroute.util.KakaoLocalClient
-import com.yong.freshroute.util.KakaoLocalItem
 import com.yong.freshroute.util.KakaoLocalList
 import com.yong.freshroute.util.LocationData
 import com.yong.freshroute.util.SearchTypes
@@ -81,19 +80,23 @@ class SearchInputActivity : AppCompatActivity() {
                                     return
                                 }
 
-                                recyclerSearchResult.adapter = SearchRecyclerAdapter(resultList)
+                                val recyclerAdapter = SearchRecyclerAdapter(resultList)
+                                recyclerSearchResult.adapter = recyclerAdapter
                                 recyclerSearchResult.layoutManager = LinearLayoutManager(applicationContext)
+                                recyclerAdapter.itemClick = object: SearchRecyclerAdapter.ItemClick {
+                                    override fun onClick(view: View, position: Int) {
+                                        inputData = LocationData(resultList[position].localName,
+                                            resultList[position].localAddress,
+                                            resultList[position].localLatitude.toDouble(),
+                                            resultList[position].localLongitude.toDouble())
 
-//                                inputData = LocationData(resultList[0].localName,
-//                                    resultList[0].localAddress,
-//                                    resultList[0].localLatitude.toDouble(),
-//                                    resultList[0].localLongitude.toDouble())
-//
-//                                val resultIntent = Intent(applicationContext, SearchActivity::class.java)
-//                                resultIntent.putExtra("data", inputData)
-//                                resultIntent.putExtra("type", inputType)
-//                                setResult(RESULT_OK, resultIntent)
-//                                finish()
+                                        val resultIntent = Intent(applicationContext, SearchActivity::class.java)
+                                        resultIntent.putExtra("data", inputData)
+                                        resultIntent.putExtra("type", inputType)
+                                        setResult(RESULT_OK, resultIntent)
+                                        finish()
+                                    }
+                                }
                             }
                         }
 
