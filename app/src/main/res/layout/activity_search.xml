@@ -118,7 +118,8 @@
             android:layout_height="wrap_content"
             android:stepSize="1"
             android:valueFrom="1"
-            android:valueTo="5" />
+            android:valueTo="5"
+            android:id="@+id/slider_search_fresh_congestion"/>
 
     </LinearLayout>
 
