@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yong.freshroute.R
@@ -22,6 +23,11 @@ class SearchInputActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_input)
+
+        val toolbar = findViewById<Toolbar>(R.id.search_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = getString(R.string.search_toolbar_title)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         btnSearch = findViewById(R.id.btn_searchinput_search)
         edSearchKeyword = findViewById(R.id.et_searchinput_text)
