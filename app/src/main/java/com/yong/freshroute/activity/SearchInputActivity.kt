@@ -8,10 +8,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.yong.freshroute.R
+import com.yong.freshroute.adapter.SearchRecyclerAdapter
 import com.yong.freshroute.util.KakaoLocalClient
+import com.yong.freshroute.util.KakaoLocalItem
 import com.yong.freshroute.util.KakaoLocalList
 import com.yong.freshroute.util.LocationData
 import com.yong.freshroute.util.SearchTypes
@@ -22,6 +26,7 @@ import retrofit2.Response
 class SearchInputActivity : AppCompatActivity() {
     private lateinit var btnSearch: MaterialButton
     private lateinit var edSearchKeyword: TextInputEditText
+    private lateinit var recyclerSearchResult: RecyclerView
 
     private lateinit var inputData: LocationData
     private lateinit var inputType: SearchTypes
@@ -37,6 +42,8 @@ class SearchInputActivity : AppCompatActivity() {
 
         btnSearch = findViewById(R.id.btn_searchinput_search)
         edSearchKeyword = findViewById(R.id.et_searchinput_text)
+        recyclerSearchResult = findViewById(R.id.recycler_searchinput_result)
+
         btnSearch.setOnClickListener(btnListener)
 
         if(Build.VERSION.SDK_INT >= 33){
@@ -74,16 +81,19 @@ class SearchInputActivity : AppCompatActivity() {
                                     return
                                 }
 
-                                inputData = LocationData(resultList[0].localName,
-                                    resultList[0].localAddress,
-                                    resultList[0].localLatitude.toDouble(),
-                                    resultList[0].localLongitude.toDouble())
+                                recyclerSearchResult.adapter = SearchRecyclerAdapter(resultList)
+                                recyclerSearchResult.layoutManager = LinearLayoutManager(applicationContext)
 
-                                val resultIntent = Intent(applicationContext, SearchActivity::class.java)
-                                resultIntent.putExtra("data", inputData)
-                                resultIntent.putExtra("type", inputType)
-                                setResult(RESULT_OK, resultIntent)
-                                finish()
+//                                inputData = LocationData(resultList[0].localName,
+//                                    resultList[0].localAddress,
+//                                    resultList[0].localLatitude.toDouble(),
+//                                    resultList[0].localLongitude.toDouble())
+//
+//                                val resultIntent = Intent(applicationContext, SearchActivity::class.java)
+//                                resultIntent.putExtra("data", inputData)
+//                                resultIntent.putExtra("type", inputType)
+//                                setResult(RESULT_OK, resultIntent)
+//                                finish()
                             }
                         }
 
