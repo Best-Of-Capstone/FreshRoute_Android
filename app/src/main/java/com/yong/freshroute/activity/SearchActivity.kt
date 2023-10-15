@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
@@ -66,9 +65,6 @@ class SearchActivity : AppCompatActivity() {
                     locationDataTo = inputData
                     tvInputTo.text = locationDataTo.Name
                 }
-
-            }else{
-                Toast.makeText(applicationContext, "Noting Inputted", Toast.LENGTH_LONG).show()
             }
         }
     }
