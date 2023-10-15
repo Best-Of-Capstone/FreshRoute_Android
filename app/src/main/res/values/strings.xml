@@ -10,6 +10,8 @@
     <string name="search_btn_input_to">To Where?</string>
     <string name="search_btn_transportation_bus">Bus</string>
     <string name="search_btn_transportation_subway">Subway</string>
+    <string name="search_title_fresh_congestion">Congestion</string>
+    <string name="search_title_fresh_transportation">Prefered Transportation</string>
     <string name="search_toolbar_title">Find Route</string>
 
     <string name="welcome_btn_location_permission">Grant Location Permission</string>
