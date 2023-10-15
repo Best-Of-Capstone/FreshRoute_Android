@@ -17,5 +17,6 @@
     <string name="welcome_btn_location_permission">Grant Location Permission</string>
     <string name="welcome_btn_next">Next</string>
 
+    <string name="d_main_icon_search">Search Icon</string>
     <string name="d_search_icon_gps">GPS Icon</string>
 </resources>
