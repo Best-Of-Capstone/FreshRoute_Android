@@ -24,7 +24,9 @@ android {
     buildTypes {
         all {
             buildConfigField("String", "KAKAO_APP_KEY", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+            buildConfigField("String", "KAKAO_REST_API_KEY", gradleLocalProperties(rootDir).getProperty("KAKAO_REST_API_KEY"))
             resValue("string", "KAKAO_APP_KEY", gradleLocalProperties(rootDir).getProperty("KAKAO_APP_KEY"))
+            resValue("string", "KAKAO_REST_API_KEY", gradleLocalProperties(rootDir).getProperty("KAKAO_REST_API_KEY"))
         }
 
         release {
@@ -49,10 +51,12 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     implementation("com.kakao.maps.open:android:2.6.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

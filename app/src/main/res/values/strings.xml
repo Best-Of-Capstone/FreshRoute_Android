@@ -5,6 +5,23 @@
 
     <string name="main_tv_search">Search</string>
 
+    <string name="search_btn_done">Search !</string>
+    <string name="search_btn_input_from">From Where?</string>
+    <string name="search_btn_input_to">To Where?</string>
+    <string name="search_btn_transportation_bus">Bus</string>
+    <string name="search_btn_transportation_subway">Subway</string>
+    <string name="search_title_fresh_congestion">Congestion</string>
+    <string name="search_title_fresh_transportation">Preferred Transportation</string>
+    <string name="search_toolbar_title">Find Route</string>
+
+    <string name="searchinput_btn_search">Search</string>
+    <string name="searchinput_noti_error">Error: %s</string>
+    <string name="searchinput_noti_no_result">No Search Result</string>
+    <string name="searchinput_noti_wrong_input">Wrong Input</string>
+
     <string name="welcome_btn_location_permission">Grant Location Permission</string>
     <string name="welcome_btn_next">Next</string>
+
+    <string name="d_main_icon_search">Search Icon</string>
+    <string name="d_search_icon_gps">GPS Icon</string>
 </resources>
