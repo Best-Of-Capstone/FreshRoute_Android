@@ -14,7 +14,7 @@ data class LocationData(
     var Longitude: Number
 ): Serializable
 
-data class UserData(
+data class UserInfo(
     var Name: String,
     var Email: String,
     var UID: String,
