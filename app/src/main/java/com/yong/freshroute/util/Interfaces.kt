@@ -14,6 +14,13 @@ data class LocationData(
     var Longitude: Number
 ): Serializable
 
+data class UserData(
+    var Name: String,
+    var Email: String,
+    var UID: String,
+    var Token: String
+): Serializable
+
 enum class SearchTypes {
     SEARCH_INPUT_FROM,
     SEARCH_INPUT_TO
