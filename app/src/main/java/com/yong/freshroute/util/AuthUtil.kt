@@ -1,6 +1,9 @@
 package com.yong.freshroute.util
 
 object AuthUtil {
+    fun getUserInfo(userID: String): UserInfo {
+        return UserInfo("NAME", "EMAIL", "UID", "TOKEN")
+    }
     fun isNewUser(userID: String): Boolean {
         return false
     }
