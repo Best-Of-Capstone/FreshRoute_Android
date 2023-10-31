@@ -9,11 +9,11 @@ object AuthUtil {
         return true
     }
 
-    fun tryFirebaseLogin() {
-        
+    fun tryFirebaseLogin(): UserInfo {
+        return UserInfo("NAME", "EMAIL", "UID", "TOKEN")
     }
 
-    fun tryLogin(userToken: String?) {
-
+    fun tryLogin(userToken: String?): UserInfo {
+        return UserInfo("NAME", "EMAIL", "UID", "TOKEN")
     }
 }
