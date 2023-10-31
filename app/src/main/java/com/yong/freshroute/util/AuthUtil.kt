@@ -1,12 +1,12 @@
 package com.yong.freshroute.util
 
 object AuthUtil {
-    fun isNewUser(userID: String) {
-
+    fun isNewUser(userID: String): Boolean {
+        return false
     }
 
-    fun isTokenAvail(userToken: String) {
-
+    fun isTokenAvail(userToken: String): Boolean {
+        return true
     }
 
     fun tryFirebaseLogin() {
