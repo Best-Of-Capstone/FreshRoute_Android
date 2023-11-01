@@ -16,7 +16,7 @@ object AuthUtil {
         return UserInfo("NAME", "EMAIL", "UID", "TOKEN")
     }
 
-    fun tryLogin(userToken: String?): UserInfo {
+    fun tryLogin(): UserInfo {
         return UserInfo("NAME", "EMAIL", "UID", "TOKEN")
     }
 }
