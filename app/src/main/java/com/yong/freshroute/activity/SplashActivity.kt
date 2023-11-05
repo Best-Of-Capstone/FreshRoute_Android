@@ -18,6 +18,8 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             if(AuthUtil.isLoggedIn() && AuthUtil.isTokenAvail()){
                 startActivity(Intent(this, MainActivity::class.java))
+            }else{
+                startActivity(Intent(this, LoginActivity::class.java))
             }
         }, 2000)
     }
