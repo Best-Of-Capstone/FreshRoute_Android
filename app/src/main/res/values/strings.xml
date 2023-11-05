@@ -3,6 +3,9 @@
 
     <string name="noti_toast_no_permission">Location Permission is Needed.</string>
 
+    <string name="login_btn_google">Login with Google</string>
+    <string name="login_noti_fail">Failed to Login</string>
+
     <string name="main_tv_search">Search</string>
 
     <string name="search_btn_done">Search !</string>
