@@ -17,8 +17,7 @@ data class LocationData(
 data class UserInfo(
     var Name: String,
     var Email: String,
-    var UID: String,
-    var Token: String
+    var UID: String
 ): Serializable
 
 enum class SearchTypes {
