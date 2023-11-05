@@ -5,6 +5,7 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -15,6 +16,7 @@ import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
 import com.kakao.vectormap.camera.CameraUpdateFactory
 import com.yong.freshroute.R
+import com.yong.freshroute.util.AuthUtil
 import com.yong.freshroute.util.PermissionUtil.checkLocationPermission
 import com.yong.freshroute.util.PermissionUtil.openAppInfo
 
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBtnSearch: LinearLayout
     private lateinit var mainMapView: MapView
+    private lateinit var mainWelcomeText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,9 @@ class MainActivity : AppCompatActivity() {
         mainBtnSearch.setOnClickListener(btnListener)
 
         mainMapView = findViewById(R.id.map_main_view)
+
+        mainWelcomeText = findViewById(R.id.tv_main_welcome)
+        mainWelcomeText.text = String.format(getString(R.string.main_tv_welcome_format), AuthUtil.getUserInfo()!!.Name)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
     }
