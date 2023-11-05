@@ -57,6 +57,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
 
     implementation("com.kakao.maps.open:android:2.6.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
