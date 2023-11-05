@@ -1,12 +1,14 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.preference.PreferenceManager
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -16,6 +18,7 @@ import com.yong.freshroute.util.AuthUtil
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var btnGoogleLogin: MaterialButton
+    private lateinit var pref: SharedPreferences
     private lateinit var signInLauncher: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,11 @@ class LoginActivity : AppCompatActivity() {
 
         btnGoogleLogin = findViewById(R.id.btn_login_google)
         btnGoogleLogin.setOnClickListener(btnListener)
+
+        pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        if(pref.getBoolean("isFirst", true)) {
+            startActivity(Intent(applicationContext, WelcomeActivity::class.java))
+        }
 
         signInLauncher = this.registerForActivityResult(
             FirebaseAuthUIActivityResultContract(),

@@ -22,7 +22,6 @@ import com.yong.freshroute.util.PermissionUtil.openAppInfo
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var pref: SharedPreferences
 
     private lateinit var mainBtnSearch: LinearLayout
     private lateinit var mainMapView: MapView
@@ -30,11 +29,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        if(pref.getBoolean("isFirst", true)) {
-            startActivity(Intent(applicationContext, WelcomeActivity::class.java))
-        }
 
         mainBtnSearch = findViewById(R.id.btn_main_search)
         mainBtnSearch.setOnClickListener(btnListener)
