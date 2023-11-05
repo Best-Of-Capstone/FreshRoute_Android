@@ -8,6 +8,7 @@
 
     <string name="main_tv_search">Search</string>
     <string name="main_tv_welcome">Welcome!</string>
+    <string name="main_tv_welcome_format">Hi! How are you today, %s?</string>
 
     <string name="search_btn_done">Search !</string>
     <string name="search_btn_input_from">From Where?</string>
