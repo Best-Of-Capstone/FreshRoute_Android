@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if(AuthUtil.isLoggedIn() && AuthUtil.isTokenAvail()){
+            if(AuthUtil.isLoggedIn()){
                 startActivity(Intent(this, MainActivity::class.java))
             }else{
                 startActivity(Intent(this, LoginActivity::class.java))
