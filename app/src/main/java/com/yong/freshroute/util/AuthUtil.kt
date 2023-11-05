@@ -21,7 +21,7 @@ object AuthUtil {
         return false
     }
 
-    fun isTokenAvail(userToken: String): Boolean {
+    fun isTokenAvail(): Boolean {
         return true
     }
 
