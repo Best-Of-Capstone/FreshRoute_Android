@@ -1,13 +1,11 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.location.Location
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.kakao.vectormap.KakaoMap
