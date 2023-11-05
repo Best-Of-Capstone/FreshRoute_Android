@@ -43,13 +43,13 @@ class LoginActivity : AppCompatActivity() {
         if(res.resultCode == RESULT_OK) {
             val curUser = AuthUtil.getUserInfo()
             if(curUser == null) {
-                Toast.makeText(applicationContext, "Failed Login", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.login_noti_fail), Toast.LENGTH_LONG).show()
             }else{
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         } else {
-            Toast.makeText(applicationContext, "Failed Login", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.login_noti_fail), Toast.LENGTH_LONG).show()
         }
     }
 
