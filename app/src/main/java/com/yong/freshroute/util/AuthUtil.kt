@@ -14,7 +14,7 @@ object AuthUtil {
     }
 
     fun isLoggedIn(): Boolean {
-        return false
+        return true
     }
 
     fun isNewUser(userID: String): Boolean {
