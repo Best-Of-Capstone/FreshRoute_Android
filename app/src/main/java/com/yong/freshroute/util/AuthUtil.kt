@@ -1,5 +1,9 @@
 package com.yong.freshroute.util
 
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.firebase.auth.FirebaseAuth
 
 object AuthUtil {
@@ -14,7 +18,8 @@ object AuthUtil {
     }
 
     fun isLoggedIn(): Boolean {
-        return true
+        initAuth()
+        return authApp.currentUser != null
     }
 
     fun isNewUser(userID: String): Boolean {
@@ -30,7 +35,14 @@ object AuthUtil {
     }
 
     fun tryLogin(): UserInfo {
-        val curUser = authApp.currentUser
+        BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setFilterByAuthorizedAccounts(true)
+                    .setSupported(true)
+                    .build()
+            )
+            .build()
         return UserInfo("NAME", "EMAIL", "UID", "TOKEN")
     }
 }
