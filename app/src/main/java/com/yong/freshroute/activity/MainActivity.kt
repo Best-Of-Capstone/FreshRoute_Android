@@ -1,13 +1,12 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.location.Location
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.kakao.vectormap.KakaoMap
@@ -17,29 +16,28 @@ import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
 import com.kakao.vectormap.camera.CameraUpdateFactory
 import com.yong.freshroute.R
+import com.yong.freshroute.util.AuthUtil
 import com.yong.freshroute.util.PermissionUtil.checkLocationPermission
 import com.yong.freshroute.util.PermissionUtil.openAppInfo
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var pref: SharedPreferences
 
     private lateinit var mainBtnSearch: LinearLayout
     private lateinit var mainMapView: MapView
+    private lateinit var mainWelcomeText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        if(pref.getBoolean("isFirst", true)) {
-            startActivity(Intent(applicationContext, WelcomeActivity::class.java))
-        }
-
         mainBtnSearch = findViewById(R.id.btn_main_search)
         mainBtnSearch.setOnClickListener(btnListener)
 
         mainMapView = findViewById(R.id.map_main_view)
+
+        mainWelcomeText = findViewById(R.id.tv_main_welcome)
+        mainWelcomeText.text = String.format(getString(R.string.main_tv_welcome_format), AuthUtil.getUserInfo()!!.Name)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
     }
