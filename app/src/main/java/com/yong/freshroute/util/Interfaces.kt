@@ -53,8 +53,8 @@ data class ApiResult<T>(
 )
 
 data class RouteApiInput(
-    val startCord: Array<Double>,
-    val endCord: Array<Double>,
+    val startCord: Array<Number>,
+    val endCord: Array<Number>,
     val targetCount: Int?
 )
 
@@ -70,7 +70,7 @@ data class RouteApiResultItemData(
     val distance: String,
     val duration: String,
     val steps: Array<RouteApiResultItemDataStep>,
-    val coordinates: Array<Array<Int>>
+    val coordinates: Array<Array<Number>>
 )
 
 data class RouteApiResultItem(
