@@ -11,6 +11,7 @@ import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
+import com.kakao.vectormap.camera.CameraAnimation
 import com.kakao.vectormap.camera.CameraUpdateFactory
 import com.kakao.vectormap.route.RouteLineOptions
 import com.kakao.vectormap.route.RouteLineSegment
@@ -85,6 +86,6 @@ class DetailActivity : AppCompatActivity() {
 
     private fun moveCamera(kakaoMap: KakaoMap, lat: Number, long: Number) {
         val cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat.toDouble(), long.toDouble()))
-        kakaoMap.moveCamera(cameraUpdate)
+        kakaoMap.moveCamera(cameraUpdate, CameraAnimation.from(500, true, true))
     }
 }
