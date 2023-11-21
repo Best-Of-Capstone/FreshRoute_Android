@@ -57,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun drawRoute(kakaoMap: KakaoMap) {
         val routeLayer = kakaoMap.routeLineManager!!.layer
-        val routeStyle = RouteLineStylesSet.from("blueStyles", RouteLineStyles.from(RouteLineStyle.from(15f, Color.BLUE)))
+        val routeStyle = RouteLineStylesSet.from("blueStyles", RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.cau_blue))))
 
         val routeSegment = RouteLineSegment.from(
             routeData!!.route.coordinates.map {
