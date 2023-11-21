@@ -10,16 +10,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yong.freshroute.R
+import com.yong.freshroute.adapter.RouteListRecyclerAdapter
 import com.yong.freshroute.adapter.SearchRecyclerAdapter
 import com.yong.freshroute.util.ApiResult
-import com.yong.freshroute.util.KakaoLocalClient
-import com.yong.freshroute.util.KakaoLocalList
 import com.yong.freshroute.util.LocationData
 import com.yong.freshroute.util.RouteApiClient
 import com.yong.freshroute.util.RouteApiInput
 import com.yong.freshroute.util.RouteApiResult
-import com.yong.freshroute.util.RouteApiResultItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +27,7 @@ class SearchResultActivity : AppCompatActivity() {
     private var locationDataFrom: LocationData? = null
     private var locationDataTo: LocationData? = null
 
+    private lateinit var recyclerSearchResult: RecyclerView
     private lateinit var tvInputFrom: TextView
     private lateinit var tvInputTo: TextView
 
@@ -40,6 +40,7 @@ class SearchResultActivity : AppCompatActivity() {
         supportActionBar!!.title = getString(R.string.searchresult_toolbar_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        recyclerSearchResult = findViewById(R.id.recycler_searchresult_result)
         tvInputFrom = findViewById(R.id.tv_searchresult_input_from)
         tvInputTo = findViewById(R.id.tv_searchresult_input_to)
 
@@ -68,8 +69,14 @@ class SearchResultActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
                         return
                     }else{
-                        response.body()!!.RESULT_DATA.routeList.forEach {
-                            Log.d("Route Results", it.toString())
+                        val routeList = response.body()!!.RESULT_DATA.routeList.toList()
+                        val recyclerAdapter = RouteListRecyclerAdapter(routeList)
+                        recyclerSearchResult.adapter = recyclerAdapter
+                        recyclerSearchResult.layoutManager = LinearLayoutManager(applicationContext)
+                        recyclerAdapter.itemClick = object: RouteListRecyclerAdapter.ItemClick {
+                            override fun onClick(view: View, position: Int) {
+                                Log.d("ROUTE SELECT", routeList[position].toString())
+                            }
                         }
                     }
                 }
