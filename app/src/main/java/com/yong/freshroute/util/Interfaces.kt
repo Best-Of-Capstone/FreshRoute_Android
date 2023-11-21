@@ -53,8 +53,8 @@ data class ApiResult<T>(
 )
 
 data class RouteApiInput(
-    val startCord: String,
-    val endCord: String,
+    val startCord: Array<Double>,
+    val endCord: Array<Double>,
     val targetCount: Int?
 )
 
@@ -81,7 +81,6 @@ data class RouteApiResultItem(
 
 data class RouteApiResult(
     val routeList: Array<RouteApiResultItem>,
-
 )
 
 interface RouteApi {
