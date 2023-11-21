@@ -12,8 +12,8 @@ import java.io.Serializable
 data class LocationData(
     var Name: String,
     var Address: String,
-    var Latitude: Number,
-    var Longitude: Number
+    var Latitude: Double,
+    var Longitude: Double
 ): Serializable
 
 data class UserInfo(
@@ -59,11 +59,11 @@ data class RouteApiInput(
 )
 
 data class RouteApiResultItemDataStep(
-    val distance: Int,
-    val duration: Int,
+    val distance: Number,
+    val duration: Number,
     val type: String,
     val name: String,
-    val wayPoints: List<Int>
+    val wayPoints: List<Number>
 )
 
 data class RouteApiResultItemData(
