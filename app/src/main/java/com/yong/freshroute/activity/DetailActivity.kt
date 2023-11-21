@@ -50,7 +50,8 @@ class DetailActivity : AppCompatActivity() {
         detailRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
         recyclerAdapter.itemClick = object: RouteDetailRecyclerAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                moveCamera(kakaoMap, routeData!!.route.coordinates[position][0], routeData!!.route.coordinates[position][1])
+                val coordIdx = routeData!!.route.steps[position].wayPoints[0].toInt()
+                moveCamera(kakaoMap, routeData!!.route.coordinates[coordIdx][0], routeData!!.route.coordinates[coordIdx][1])
             }
         }
     }
