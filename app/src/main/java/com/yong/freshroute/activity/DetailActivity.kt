@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kakao.vectormap.KakaoMap
@@ -43,16 +42,15 @@ class DetailActivity : AppCompatActivity() {
         }
 
         initMapView()
-        initRouteDetail()
     }
 
-    private fun initRouteDetail() {
+    private fun initRouteDetail(kakaoMap: KakaoMap) {
         val recyclerAdapter = RouteDetailRecyclerAdapter(routeData!!.route.steps.toList())
         detailRecyclerView.adapter = recyclerAdapter
         detailRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
         recyclerAdapter.itemClick = object: RouteDetailRecyclerAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                Toast.makeText(applicationContext, "Clicked ${routeData!!.route.coordinates[position][0]} ${routeData!!.route.coordinates[position][1]}", Toast.LENGTH_LONG).show()
+                moveCamera(kakaoMap, routeData!!.route.coordinates[position][0], routeData!!.route.coordinates[position][1])
             }
         }
     }
@@ -64,6 +62,7 @@ class DetailActivity : AppCompatActivity() {
         }, object : KakaoMapReadyCallback() {
             override fun onMapReady(kakaoMap: KakaoMap) {
                 drawRoute(kakaoMap)
+                initRouteDetail(kakaoMap)
                 moveCamera(kakaoMap, routeData!!.route.coordinates[0][0], routeData!!.route.coordinates[0][1])
             }
         })
