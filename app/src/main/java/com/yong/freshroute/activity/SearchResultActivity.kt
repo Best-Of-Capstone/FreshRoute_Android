@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yong.freshroute.R
 import com.yong.freshroute.adapter.RouteListRecyclerAdapter
-import com.yong.freshroute.adapter.SearchRecyclerAdapter
 import com.yong.freshroute.util.ApiResult
 import com.yong.freshroute.util.LocationData
 import com.yong.freshroute.util.RouteApiClient
@@ -59,7 +57,6 @@ class SearchResultActivity : AppCompatActivity() {
 
         val fromCoord: Array<Number> = arrayOf(locationDataFrom!!.Latitude, locationDataFrom!!.Longitude)
         val toCoord: Array<Number> = arrayOf(locationDataTo!!.Latitude, locationDataTo!!.Longitude)
-
         val locationData = RouteApiInput(fromCoord, toCoord, null)
         RouteApiClient.RouteApiService
             .getRouteList(locationData)
@@ -75,7 +72,9 @@ class SearchResultActivity : AppCompatActivity() {
                         recyclerSearchResult.layoutManager = LinearLayoutManager(applicationContext)
                         recyclerAdapter.itemClick = object: RouteListRecyclerAdapter.ItemClick {
                             override fun onClick(view: View, position: Int) {
-                                Log.d("ROUTE SELECT", routeList[position].toString())
+                                val intent = Intent(applicationContext, DetailActivity::class.java)
+                                intent.putExtra("route_data", routeList[position])
+                                startActivity(intent)
                             }
                         }
                     }
