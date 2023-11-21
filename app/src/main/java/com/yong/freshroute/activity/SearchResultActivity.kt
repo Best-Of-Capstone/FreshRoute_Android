@@ -1,12 +1,28 @@
 package com.yong.freshroute.activity
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yong.freshroute.R
+import com.yong.freshroute.adapter.SearchRecyclerAdapter
+import com.yong.freshroute.util.ApiResult
+import com.yong.freshroute.util.KakaoLocalClient
+import com.yong.freshroute.util.KakaoLocalList
 import com.yong.freshroute.util.LocationData
+import com.yong.freshroute.util.RouteApiClient
+import com.yong.freshroute.util.RouteApiInput
+import com.yong.freshroute.util.RouteApiResult
+import com.yong.freshroute.util.RouteApiResultItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchResultActivity : AppCompatActivity() {
     private var locationDataFrom: LocationData? = null
@@ -39,5 +55,25 @@ class SearchResultActivity : AppCompatActivity() {
 
         tvInputFrom.text = locationDataFrom!!.Name
         tvInputTo.text = locationDataTo!!.Name
+
+        val fromCoord: Array<Number> = arrayOf(locationDataFrom!!.Latitude, locationDataFrom!!.Longitude)
+        val toCoord: Array<Number> = arrayOf(locationDataTo!!.Latitude, locationDataTo!!.Longitude)
+        val locationData = RouteApiInput(fromCoord, toCoord, null)
+        RouteApiClient.RouteApiService
+            .getRouteList(locationData)
+            .enqueue(object: Callback<ApiResult<RouteApiResult>> {
+                override fun onResponse(call: Call<ApiResult<RouteApiResult>>, response: Response<ApiResult<RouteApiResult>>){
+                    if(response.isSuccessful.not()) {
+                        Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
+                        return
+                    }else{
+                        Log.d("Route Result", response.body().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResult<RouteApiResult>>, t: Throwable) {
+                    Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), t.message.toString()), Toast.LENGTH_LONG).show()
+                }
+            })
     }
 }
