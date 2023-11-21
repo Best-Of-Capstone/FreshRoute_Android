@@ -23,4 +23,5 @@ object KakaoLocalClient {
 
     val kakaoLocalService: KakaoLocalAPI by lazy {
         retrofitClient.create(KakaoLocalAPI::class.java)
-    } }
+    }
+}
