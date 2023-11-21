@@ -3,5 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lightgray">#DDDDDDDD</color>
-    <color name="cau_blue">#FF2155a4</color>
+
+    <color name="black_primary">#212121</color>
+    <color name="black_secondary">#757575</color>
+    <color name="blue_accent">#448AFF</color>
+    <color name="blue_primary">#3F51B5</color>
+    <color name="blue_primary_dark">#303F9F</color>
+    <color name="blue_primary_light">#3F51B5</color>
+
+    <color name="cau_blue">#2155A4</color>
 </resources>
