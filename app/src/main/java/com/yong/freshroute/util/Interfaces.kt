@@ -74,9 +74,9 @@ data class RouteApiResultItemData(
 )
 
 data class RouteApiResultItem(
-    val id: Int,
-    val description: String,
-    val route: RouteApiResultItemData
+    @SerializedName("result_id") val id: Int,
+    @SerializedName("result_description") val description: String,
+    @SerializedName("result_route") val route: RouteApiResultItemData
 )
 
 data class RouteApiResult(
