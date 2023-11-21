@@ -58,6 +58,7 @@ class SearchResultActivity : AppCompatActivity() {
 
         val fromCoord: Array<Number> = arrayOf(locationDataFrom!!.Latitude, locationDataFrom!!.Longitude)
         val toCoord: Array<Number> = arrayOf(locationDataTo!!.Latitude, locationDataTo!!.Longitude)
+
         val locationData = RouteApiInput(fromCoord, toCoord, null)
         RouteApiClient.RouteApiService
             .getRouteList(locationData)
@@ -67,7 +68,9 @@ class SearchResultActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
                         return
                     }else{
-                        Log.d("Route Result", response.body().toString())
+                        response.body()!!.RESULT_DATA.routeList.forEach {
+                            Log.d("Route Results", it.toString())
+                        }
                     }
                 }
 
