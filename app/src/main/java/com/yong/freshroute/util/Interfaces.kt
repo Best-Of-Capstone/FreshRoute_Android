@@ -69,7 +69,8 @@ data class RouteApiResultItemDataStep(
 data class RouteApiResultItemData(
     val distance: String,
     val duration: String,
-    val steps: Array<RouteApiResultItemDataStep>
+    val steps: Array<RouteApiResultItemDataStep>,
+    val coordinates: Array<Array<Int>>
 )
 
 data class RouteApiResultItem(
