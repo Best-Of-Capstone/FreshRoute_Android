@@ -1,9 +1,13 @@
 package com.yong.freshroute.activity
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng
@@ -16,10 +20,13 @@ import com.kakao.vectormap.route.RouteLineStyle
 import com.kakao.vectormap.route.RouteLineStyles
 import com.kakao.vectormap.route.RouteLineStylesSet
 import com.yong.freshroute.R
+import com.yong.freshroute.adapter.RouteDetailRecyclerAdapter
+import com.yong.freshroute.adapter.RouteListRecyclerAdapter
 import com.yong.freshroute.util.RouteApiResultItem
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var detailMapView: MapView
+    private lateinit var detailRecyclerView: RecyclerView
 
     var routeData: RouteApiResultItem? = null
 
@@ -28,6 +35,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         detailMapView = findViewById(R.id.map_detail_view)
+        detailRecyclerView = findViewById(R.id.recycler_detail_route)
 
         if(Build.VERSION.SDK_INT >= 33){
             routeData = intent.getSerializableExtra("route_data", RouteApiResultItem::class.java)!!
@@ -37,6 +45,18 @@ class DetailActivity : AppCompatActivity() {
         }
 
         initMapView()
+        initRouteDetail()
+    }
+
+    private fun initRouteDetail() {
+        val recyclerAdapter = RouteDetailRecyclerAdapter(routeData!!.route.steps.toList())
+        detailRecyclerView.adapter = recyclerAdapter
+        detailRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        recyclerAdapter.itemClick = object: RouteDetailRecyclerAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                Toast.makeText(applicationContext, "Clicked ${routeData!!.route.coordinates[position][0]} ${routeData!!.route.coordinates[position][1]}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun initMapView() {
