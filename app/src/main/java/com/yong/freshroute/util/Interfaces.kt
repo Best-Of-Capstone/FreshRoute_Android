@@ -64,14 +64,14 @@ data class RouteApiResultItemDataStep(
     val type: String,
     val name: String,
     val wayPoints: List<Number>
-)
+): Serializable
 
 data class RouteApiResultItemData(
     val distance: String,
     val duration: String,
     val steps: Array<RouteApiResultItemDataStep>,
     val coordinates: Array<Array<Number>>
-)
+): Serializable
 
 data class RouteApiResultItem(
     val id: Int,
