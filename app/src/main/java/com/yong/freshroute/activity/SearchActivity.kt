@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
@@ -18,8 +19,8 @@ import com.yong.freshroute.util.SearchTypes
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var locationDataFrom: LocationData
-    private lateinit var locationDataTo: LocationData
+    private var locationDataFrom: LocationData? = null
+    private var locationDataTo: LocationData? = null
 
     private lateinit var tvInputFrom: TextView
     private lateinit var tvInputTo: TextView
@@ -60,10 +61,10 @@ class SearchActivity : AppCompatActivity() {
 
                 if(inputType == SearchTypes.SEARCH_INPUT_FROM){
                     locationDataFrom = inputData
-                    tvInputFrom.text = locationDataFrom.Name
+                    tvInputFrom.text = locationDataFrom!!.Name
                 }else{
                     locationDataTo = inputData
-                    tvInputTo.text = locationDataTo.Name
+                    tvInputTo.text = locationDataTo!!.Name
                 }
             }
         }
@@ -78,7 +79,17 @@ class SearchActivity : AppCompatActivity() {
 
     private val btnListener = View.OnClickListener { view ->
         when(view.id) {
-            R.id.btn_search_detail -> startActivity(Intent(applicationContext, DetailActivity::class.java))
+            R.id.btn_search_detail -> {
+                if(locationDataFrom != null && locationDataTo != null
+                    && locationDataFrom!!.Name.isNotEmpty() && locationDataTo!!.Name.isNotEmpty()){
+                    val searchIntent = Intent(applicationContext, SearchResultActivity::class.java)
+                    searchIntent.putExtra("from", locationDataFrom)
+                    searchIntent.putExtra("to", locationDataTo)
+                    startActivity(searchIntent)
+                }else{
+                    Toast.makeText(applicationContext, "Empty Input", Toast.LENGTH_LONG).show()
+                }
+            }
             R.id.btn_search_input_from -> {
                 intent = Intent(applicationContext, SearchInputActivity::class.java)
                 intent.putExtra("type", SearchTypes.SEARCH_INPUT_FROM)
