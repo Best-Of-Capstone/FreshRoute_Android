@@ -61,12 +61,15 @@ data class RouteApiInput(
 data class RouteApiResultItemDataStep(
     val distance: Number,
     val duration: Number,
+    val elevationDelta: Number,
     val type: String,
     val name: String,
     val wayPoints: List<Number>
 ): Serializable
 
 data class RouteApiResultItemData(
+    val ascent: Number,
+    val descent: Number,
     val distance: String,
     val duration: String,
     val steps: Array<RouteApiResultItemDataStep>,

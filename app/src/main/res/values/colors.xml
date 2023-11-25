@@ -12,4 +12,10 @@
     <color name="blue_primary_light">#3F51B5</color>
 
     <color name="cau_blue">#2155A4</color>
+
+    <color name="route_blue">#0000FF</color>
+    <color name="route_green">#00FF00</color>
+    <color name="route_orange">#FF7700</color>
+    <color name="route_red">#FF0000</color>
+    <color name="route_yellow">#FFFF00</color>
 </resources>
