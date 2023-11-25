@@ -80,19 +80,37 @@ class DetailActivity : AppCompatActivity() {
         val routeStyleYellow = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_yellow)))
         val routeStyleSet = RouteLineStylesSet.from(routeStyleBlue, routeStyleGreen, routeStyleYellow, routeStyleOrange, routeStyleRed)
 
-        val routeLineSegments = routeData!!.route.steps.map {
-            RouteLineSegment.from(
-                arrayOf(LatLng.from(routeData!!.route.coordinates[it.wayPoints[0].toInt()][0].toDouble(),
-                    routeData!!.route.coordinates[it.wayPoints[0].toInt()][1].toDouble()),
-                LatLng.from(routeData!!.route.coordinates[it.wayPoints[1].toInt()][0].toDouble(),
-                    routeData!!.route.coordinates[it.wayPoints[1].toInt()][1].toDouble())),
-                routeStyleSet.getStyles(kotlin.math.abs((it.elevationDelta.toInt() / 10) % 5))
-            )
+        val routeLineList: MutableList<RouteLineSegment> = mutableListOf()
+        routeData!!.route.steps.forEach {
+            val styleIdx = getRouteStyleIndex(it.distance.toDouble(), it.elevationDelta.toDouble())
+            val routeCordList: MutableList<LatLng> = mutableListOf()
+            for(i in it.wayPoints[0].toInt() .. it.wayPoints[1].toInt()){
+                routeCordList.add(
+                    LatLng.from(routeData!!.route.coordinates[i][0].toDouble(),
+                        routeData!!.route.coordinates[i][1].toDouble()))
+            }
+            if(routeCordList.size == 1){
+                routeCordList.add(routeCordList[0])
+            }
+            routeLineList.add(RouteLineSegment.from(routeCordList, routeStyleSet.getStyles(styleIdx)))
         }
 
-        val routeOptions = RouteLineOptions.from(routeLineSegments).setStylesSet(routeStyleSet)
-
+        val routeOptions = RouteLineOptions.from(routeLineList).setStylesSet(routeStyleSet)
         routeLayer.addRouteLine(routeOptions)
+    }
+
+    private fun getRouteStyleIndex(distance: Double, elvDelta: Double): Int{
+        val incline = kotlin.math.abs(100 * elvDelta / distance)
+        if(incline >= 7){
+            return 4
+        }else if(incline >= 5){
+            return 3
+        }else if(incline >= 3){
+            return 2
+        }else if(incline >= 1){
+            return 1
+        }
+        return 0
     }
 
     private fun moveCamera(kakaoMap: KakaoMap, lat: Number, long: Number) {
