@@ -67,6 +67,8 @@ data class RouteApiResultItemDataStep(
 ): Serializable
 
 data class RouteApiResultItemData(
+    val ascent: Number,
+    val descent: Number,
     val distance: String,
     val duration: String,
     val steps: Array<RouteApiResultItemDataStep>,
