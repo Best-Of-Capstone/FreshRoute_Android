@@ -61,6 +61,7 @@ data class RouteApiInput(
 data class RouteApiResultItemDataStep(
     val distance: Number,
     val duration: Number,
+    val elevationDelta: Number,
     val type: String,
     val name: String,
     val wayPoints: List<Number>
