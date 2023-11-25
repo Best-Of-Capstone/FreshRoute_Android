@@ -72,15 +72,26 @@ class DetailActivity : AppCompatActivity() {
 
     private fun drawRoute(kakaoMap: KakaoMap) {
         val routeLayer = kakaoMap.routeLineManager!!.layer
-        val routeStyle = RouteLineStylesSet.from("blueStyles", RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.cau_blue))))
 
-        val routeSegment = RouteLineSegment.from(
-            routeData!!.route.coordinates.map {
-                LatLng.from(it[0].toDouble(), it[1].toDouble())
-            })
-            .setStyles(routeStyle.getStyles(0))
+        val routeStyleBlue = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_blue)))
+        val routeStyleGreen = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_green)))
+        val routeStyleOrange = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_orange)))
+        val routeStyleRed = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_red)))
+        val routeStyleYellow = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_yellow)))
+        val routeStyleSet = RouteLineStylesSet.from(routeStyleBlue, routeStyleGreen, routeStyleYellow, routeStyleOrange, routeStyleRed)
 
-        val routeOptions = RouteLineOptions.from(routeSegment).setStylesSet(routeStyle)
+        val routeLineSegments = routeData!!.route.steps.map {
+            RouteLineSegment.from(
+                arrayOf(LatLng.from(routeData!!.route.coordinates[it.wayPoints[0].toInt()][0].toDouble(),
+                    routeData!!.route.coordinates[it.wayPoints[0].toInt()][1].toDouble()),
+                LatLng.from(routeData!!.route.coordinates[it.wayPoints[1].toInt()][0].toDouble(),
+                    routeData!!.route.coordinates[it.wayPoints[1].toInt()][1].toDouble())),
+                routeStyleSet.getStyles(kotlin.math.abs((it.elevationDelta.toInt() / 10) % 5))
+            )
+        }
+
+        val routeOptions = RouteLineOptions.from(routeLineSegments).setStylesSet(routeStyleSet)
+
         routeLayer.addRouteLine(routeOptions)
     }
 
