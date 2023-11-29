@@ -73,7 +73,7 @@ class DetailActivity : AppCompatActivity() {
     private fun drawRoute(kakaoMap: KakaoMap) {
         val routeLayer = kakaoMap.routeLineManager!!.layer
 
-        val routeStyleBlack = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(android.R.color.black)))
+        val routeStyleBlack = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_black)))
         val routeStyleBlue = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_blue)))
         val routeStyleGreen = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_green)))
         val routeStyleOrange = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_orange)))
