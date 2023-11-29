@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.yong.freshroute.R
 import com.yong.freshroute.util.RouteApiResultItemDataStep
+import kotlinx.coroutines.withContext
 
 class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Adapter<RouteDetailRecyclerAdapter.ViewHolder>() {
     private val dataList: List<RouteApiResultItemDataStep>
@@ -38,9 +39,9 @@ class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Ad
         val listItem = dataList[position]
 
         if(listItem.distance != 0 && listItem.duration != 0){
-            holder.tvDescription.text = String.format("Distance : %.1fm / Duration : %.1fs", listItem.distance.toDouble(), listItem.duration.toDouble())
+            holder.tvDescription.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_description), listItem.distance.toDouble(), listItem.duration.toDouble())
         }
-        holder.tvTitle.text = String.format("%s (%s)", listItem.name, listItem.type)
+        holder.tvTitle.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_title), listItem.name, listItem.type)
         holder.itemView.setOnClickListener { view ->
             itemClick?.onClick(view, position)
         }
