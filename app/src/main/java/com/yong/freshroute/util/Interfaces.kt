@@ -64,6 +64,7 @@ data class RouteApiResultItemDataStep(
     val elevationDelta: Number,
     val type: String,
     val name: String,
+    val isWalking: Boolean,
     val wayPoints: List<Number>
 ): Serializable
 

@@ -73,16 +73,18 @@ class DetailActivity : AppCompatActivity() {
     private fun drawRoute(kakaoMap: KakaoMap) {
         val routeLayer = kakaoMap.routeLineManager!!.layer
 
+        val routeStyleBlack = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_black)))
         val routeStyleBlue = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_blue)))
         val routeStyleGreen = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_green)))
         val routeStyleOrange = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_orange)))
         val routeStyleRed = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_red)))
         val routeStyleYellow = RouteLineStyles.from(RouteLineStyle.from(15f, getColor(R.color.route_yellow)))
-        val routeStyleSet = RouteLineStylesSet.from(routeStyleBlue, routeStyleGreen, routeStyleYellow, routeStyleOrange, routeStyleRed)
+        val routeStyleSet = RouteLineStylesSet.from(routeStyleBlack, routeStyleBlue, routeStyleGreen, routeStyleYellow, routeStyleOrange, routeStyleRed)
 
         val routeLineList: MutableList<RouteLineSegment> = mutableListOf()
         routeData!!.route.steps.forEach {
-            val styleIdx = getRouteStyleIndex(it.distance.toDouble(), it.elevationDelta.toDouble())
+            val styleIdx = if (it.isWalking) getRouteStyleIndex(it.distance.toDouble(), it.elevationDelta.toDouble())
+                            else 0
             val routeCordList: MutableList<LatLng> = mutableListOf()
             for(i in it.wayPoints[0].toInt() .. it.wayPoints[1].toInt()){
                 routeCordList.add(
@@ -102,15 +104,15 @@ class DetailActivity : AppCompatActivity() {
     private fun getRouteStyleIndex(distance: Double, elvDelta: Double): Int{
         val incline = kotlin.math.abs(100 * elvDelta / distance)
         if(incline >= 7){
-            return 4
+            return 5
         }else if(incline >= 5){
-            return 3
+            return 4
         }else if(incline >= 3){
-            return 2
+            return 3
         }else if(incline >= 1){
-            return 1
+            return 2
         }
-        return 0
+        return 1
     }
 
     private fun moveCamera(kakaoMap: KakaoMap, lat: Number, long: Number) {

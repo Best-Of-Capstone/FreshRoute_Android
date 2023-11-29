@@ -3,6 +3,9 @@
 
     <string name="noti_toast_no_permission">Location Permission is Needed.</string>
 
+    <string name="detail_recycler_route_description">Distance : %.1fm / Duration : %.1fs</string>
+    <string name="detail_recycler_route_title">%s (%s)</string>
+
     <string name="login_btn_google">Login with Google</string>
     <string name="login_noti_fail">Failed to Login</string>
 

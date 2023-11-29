@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.yong.freshroute.R
 import com.yong.freshroute.util.RouteApiResultItemDataStep
+import kotlinx.coroutines.withContext
 
 class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Adapter<RouteDetailRecyclerAdapter.ViewHolder>() {
     private val dataList: List<RouteApiResultItemDataStep>
@@ -18,16 +19,12 @@ class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Ad
     }
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val tvDistance: TextView
-        val tvDuration: TextView
-        val tvName: TextView
-        val tvType: TextView
+        val tvDescription: TextView
+        val tvTitle: TextView
 
         init {
-            tvDistance = view.findViewById(R.id.recycler_item_routedetail_distance)
-            tvDuration = view.findViewById(R.id.recycler_item_routedetail_duration)
-            tvName = view.findViewById(R.id.recycler_item_routedetail_name)
-            tvType = view.findViewById(R.id.recycler_item_routedetail_type)
+            tvDescription = view.findViewById(R.id.recycler_item_routedetail_description)
+            tvTitle = view.findViewById(R.id.recycler_item_routedetail_title)
         }
     }
 
@@ -40,10 +37,11 @@ class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Ad
 
     override fun onBindViewHolder(holder: RouteDetailRecyclerAdapter.ViewHolder, position: Int) {
         val listItem = dataList[position]
-        holder.tvDistance.text = listItem.distance.toString()
-        holder.tvDuration.text = listItem.duration.toString()
-        holder.tvName.text = listItem.name
-        holder.tvType.text = listItem.type
+
+        if(listItem.distance != 0 && listItem.duration != 0){
+            holder.tvDescription.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_description), listItem.distance.toDouble(), listItem.duration.toDouble())
+        }
+        holder.tvTitle.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_title), listItem.name, listItem.type)
         holder.itemView.setOnClickListener { view ->
             itemClick?.onClick(view, position)
         }
