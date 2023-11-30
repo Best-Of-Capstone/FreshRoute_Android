@@ -9,6 +9,7 @@
     <string name="login_btn_google">Login with Google</string>
     <string name="login_noti_fail">Failed to Login</string>
 
+    <string name="main_tv_greeting">Welcome!</string>
     <string name="main_tv_search">Search</string>
     <string name="main_tv_welcome">Welcome!</string>
     <string name="main_tv_welcome_format">Hi! How are you today, %s?</string>
