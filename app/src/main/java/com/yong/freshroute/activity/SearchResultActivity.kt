@@ -23,6 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SearchResultActivity : AppCompatActivity() {
+    private var inputCongestion: Number? = null
+    private var inputTransportation: Number? = null
     private var locationDataFrom: LocationData? = null
     private var locationDataTo: LocationData? = null
 
@@ -53,6 +55,8 @@ class SearchResultActivity : AppCompatActivity() {
             locationDataTo = intent.getSerializableExtra("to") as LocationData
         }
 
+        inputCongestion = intent.getIntExtra("congestion", 0)
+        inputTransportation = intent.getIntExtra("transportation", 0)
         tvInputFrom.text = locationDataFrom!!.Name
         tvInputTo.text = locationDataTo!!.Name
 
