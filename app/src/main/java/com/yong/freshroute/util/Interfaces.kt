@@ -27,6 +27,8 @@ data class ApiResult<T>(
 )
 
 data class RouteApiInput(
+    val congestion: Number?,
+    val transportation: Number?,
     val startCord: Array<Number>,
     val endCord: Array<Number>,
     val targetCount: Int?
