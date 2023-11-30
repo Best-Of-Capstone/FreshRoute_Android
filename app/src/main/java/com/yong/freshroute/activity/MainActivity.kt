@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBtnSearch: LinearLayout
     private lateinit var mainMapView: MapView
+    private lateinit var mainWeatherText: TextView
     private lateinit var mainWelcomeText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         mainMapView = findViewById(R.id.map_main_view)
 
+        mainWeatherText = findViewById(R.id.tv_main_weather)
         mainWelcomeText = findViewById(R.id.tv_main_welcome)
+
+        mainWeatherText.text = getString(R.string.main_tv_weather_default)
         mainWelcomeText.text = String.format(getString(R.string.main_tv_welcome_format), AuthUtil.getUserInfo()!!.Name)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
