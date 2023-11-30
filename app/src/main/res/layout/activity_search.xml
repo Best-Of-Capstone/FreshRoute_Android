@@ -156,6 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:backgroundTint="@color/cau_blue"
         android:text="@string/search_btn_done"
         android:id="@+id/btn_search_detail"
         app:layout_constraintBottom_toBottomOf="parent"
