@@ -103,9 +103,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toggle_search_fresh_transportation"
-            app:checkedButton="@id/btn_search_transportation_bus"
+            app:checkedButton="@id/btn_search_transportation_all"
             app:selectionRequired="true"
             app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/search_btn_transportation_all"
+                android:id="@+id/btn_search_transportation_all"
+                style="?attr/materialButtonOutlinedStyle" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
@@ -137,8 +145,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stepSize="1"
-            android:valueFrom="1"
-            android:valueTo="5"
+            android:value="0"
+            android:valueFrom="-2"
+            android:valueTo="2"
             android:id="@+id/slider_search_fresh_congestion"/>
 
     </LinearLayout>

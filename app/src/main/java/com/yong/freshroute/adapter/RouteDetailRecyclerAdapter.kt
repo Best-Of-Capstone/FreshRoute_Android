@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.yong.freshroute.R
 import com.yong.freshroute.util.RouteApiResultItemDataStep
-import kotlinx.coroutines.withContext
 
 class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Adapter<RouteDetailRecyclerAdapter.ViewHolder>() {
     private val dataList: List<RouteApiResultItemDataStep>

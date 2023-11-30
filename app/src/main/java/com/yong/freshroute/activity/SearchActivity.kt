@@ -13,6 +13,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
+import com.google.android.material.slider.Slider
 import com.yong.freshroute.R
 import com.yong.freshroute.util.LocationData
 import com.yong.freshroute.util.SearchTypes
@@ -22,6 +24,8 @@ class SearchActivity : AppCompatActivity() {
     private var locationDataFrom: LocationData? = null
     private var locationDataTo: LocationData? = null
 
+    private lateinit var btnTransportation: MaterialButtonToggleGroup
+    private lateinit var sliderCongestion: Slider
     private lateinit var tvInputFrom: TextView
     private lateinit var tvInputTo: TextView
 
@@ -41,6 +45,8 @@ class SearchActivity : AppCompatActivity() {
         btnInputFrom.setOnClickListener(btnListener)
         btnInputTo.setOnClickListener(btnListener)
 
+        btnTransportation = findViewById(R.id.toggle_search_fresh_transportation)
+        sliderCongestion = findViewById(R.id.slider_search_fresh_congestion)
         tvInputFrom = findViewById(R.id.tv_search_input_from)
         tvInputTo = findViewById(R.id.tv_search_input_to)
 
@@ -85,6 +91,14 @@ class SearchActivity : AppCompatActivity() {
                     val searchIntent = Intent(applicationContext, SearchResultActivity::class.java)
                     searchIntent.putExtra("from", locationDataFrom)
                     searchIntent.putExtra("to", locationDataTo)
+
+                    searchIntent.putExtra("congestion", sliderCongestion.value)
+                    when(btnTransportation.checkedButtonId) {
+                        R.id.btn_search_transportation_all -> searchIntent.putExtra("transportation", 0)
+                        R.id.btn_search_transportation_bus -> searchIntent.putExtra("transportation", 1)
+                        R.id.btn_search_transportation_subway -> searchIntent.putExtra("transportation", 2)
+                    }
+
                     startActivity(searchIntent)
                 }else{
                     Toast.makeText(applicationContext, "Empty Input", Toast.LENGTH_LONG).show()

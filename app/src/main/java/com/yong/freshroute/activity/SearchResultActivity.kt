@@ -23,6 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SearchResultActivity : AppCompatActivity() {
+    private var inputCongestion: Number? = null
+    private var inputTransportation: Number? = null
     private var locationDataFrom: LocationData? = null
     private var locationDataTo: LocationData? = null
 
@@ -53,12 +55,14 @@ class SearchResultActivity : AppCompatActivity() {
             locationDataTo = intent.getSerializableExtra("to") as LocationData
         }
 
+        inputCongestion = intent.getIntExtra("congestion", 0)
+        inputTransportation = intent.getIntExtra("transportation", 0)
         tvInputFrom.text = locationDataFrom!!.Name
         tvInputTo.text = locationDataTo!!.Name
 
         val fromCoord: Array<Number> = arrayOf(locationDataFrom!!.Latitude, locationDataFrom!!.Longitude)
         val toCoord: Array<Number> = arrayOf(locationDataTo!!.Latitude, locationDataTo!!.Longitude)
-        val locationData = RouteApiInput(fromCoord, toCoord, null)
+        val locationData = RouteApiInput(inputCongestion, inputTransportation, fromCoord, toCoord, 3)
         RouteApiClient.RouteApiService
             .getRouteList(locationData)
             .enqueue(object: Callback<ApiResult<RouteApiResult>> {
