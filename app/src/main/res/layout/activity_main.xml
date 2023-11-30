@@ -89,10 +89,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/main_tv_greeting"
+                android:text="@string/main_tv_welcome"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:id="@+id/tv_main_greeting"
+                android:id="@+id/tv_main_welcome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_main_search" />
@@ -104,10 +104,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/main_tv_welcome"
+                android:text="@string/main_tv_greeting"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:id="@+id/tv_main_welcome"
+                android:id="@+id/tv_main_greeting"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_main_search" />
