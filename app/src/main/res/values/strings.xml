@@ -16,6 +16,7 @@
     <string name="search_btn_done">Search !</string>
     <string name="search_btn_input_from">From Where?</string>
     <string name="search_btn_input_to">To Where?</string>
+    <string name="search_btn_transportation_all">All</string>
     <string name="search_btn_transportation_bus">Bus</string>
     <string name="search_btn_transportation_subway">Subway</string>
     <string name="search_title_fresh_congestion">Congestion</string>
