@@ -11,6 +11,8 @@
 
     <string name="main_tv_greeting">Welcome!</string>
     <string name="main_tv_search">Search</string>
+    <string name="main_tv_weather_default">Loading Weather Info...</string>
+    <string name="main_tv_weather">Today is Raining</string>
     <string name="main_tv_welcome">Welcome!</string>
     <string name="main_tv_welcome_format">Hi! How are you today, %s?</string>
 
