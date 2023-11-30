@@ -1,12 +1,5 @@
 package com.yong.freshroute.util
 
-import com.google.gson.annotations.SerializedName
-import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
 import java.io.Serializable
 
 data class LocationData(
@@ -26,25 +19,6 @@ enum class SearchTypes {
     SEARCH_INPUT_FROM,
     SEARCH_INPUT_TO
 }
-
-interface KakaoLocalAPI {
-    @GET("v2/local/search/keyword.JSON")
-    fun getLocalList(
-        @Header("Authorization") apiKey: String,
-        @Query("query") queryString : String
-    ): Call<KakaoLocalList>
-}
-
-data class KakaoLocalList(
-    @SerializedName("documents") val dataList: List<KakaoLocalItem>
-)
-
-data class KakaoLocalItem(
-    @SerializedName("place_name") val localName: String,
-    @SerializedName("road_address_name") val localAddress: String,
-    @SerializedName("x") val localLongitude: String,
-    @SerializedName("y") val localLatitude: String
-)
 
 data class ApiResult<T>(
     val RESULT_CODE: Int,
@@ -86,8 +60,3 @@ data class RouteApiResultItem(
 data class RouteApiResult(
     val routeList: Array<RouteApiResultItem>,
 )
-
-interface RouteApi {
-    @POST("findRouter")
-    fun getRouteList(@Body coordData: RouteApiInput): Call<ApiResult<RouteApiResult>>
-}
