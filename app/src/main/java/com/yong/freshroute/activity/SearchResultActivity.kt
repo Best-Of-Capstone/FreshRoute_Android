@@ -62,7 +62,7 @@ class SearchResultActivity : AppCompatActivity() {
 
         val fromCoord: Array<Number> = arrayOf(locationDataFrom!!.Latitude, locationDataFrom!!.Longitude)
         val toCoord: Array<Number> = arrayOf(locationDataTo!!.Latitude, locationDataTo!!.Longitude)
-        val locationData = RouteApiInput(fromCoord, toCoord, null)
+        val locationData = RouteApiInput(inputCongestion, inputTransportation, fromCoord, toCoord, 3)
         RouteApiClient.RouteApiService
             .getRouteList(locationData)
             .enqueue(object: Callback<ApiResult<RouteApiResult>> {
