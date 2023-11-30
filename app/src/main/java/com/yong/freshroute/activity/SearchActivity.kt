@@ -21,8 +21,6 @@ import com.yong.freshroute.util.SearchTypes
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
-    private var inputCongestion: Number? = null
-    private var inputTransportation: Number? = null
     private var locationDataFrom: LocationData? = null
     private var locationDataTo: LocationData? = null
 
