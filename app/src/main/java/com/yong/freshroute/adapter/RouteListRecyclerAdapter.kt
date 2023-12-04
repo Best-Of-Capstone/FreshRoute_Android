@@ -43,7 +43,7 @@ class RouteListRecyclerAdapter(dataList: List<RouteApiResultItem>): Adapter<Rout
         holder.tvDescription.text = listItem.description
         holder.tvDistance.text = listItem.route.distance
         holder.tvDuration.text = listItem.route.duration
-        holder.tvDuration.text = String.format("Route %s", listItem.id)
+        holder.tvID.text = String.format("Route %s", listItem.id)
         holder.itemView.setOnClickListener { view ->
             itemClick?.onClick(view, position)
         }
