@@ -53,8 +53,8 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginEnd="25dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
@@ -62,7 +62,6 @@
         app:layout_constraintBottom_toTopOf="@id/layout_main_weather_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_main_search"
-        app:lottie_rawRes="@raw/anim_weather_storm"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
