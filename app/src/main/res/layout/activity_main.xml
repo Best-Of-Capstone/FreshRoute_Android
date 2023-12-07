@@ -83,7 +83,7 @@
             android:layout_marginStart="25dp"
             android:text="맑음"
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/card_bg_day"
             android:textSize="30sp"
             android:id="@+id/tv_main_weather_info" />
 
@@ -93,7 +93,7 @@
             android:layout_marginEnd="25dp"
             android:text="25`c"
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/card_bg_day"
             android:textSize="70sp"
             android:id="@+id/tv_main_weather_temp" />
 
@@ -106,7 +106,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:id="@+id/card_main_weather"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/card_bg_day"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
         app:strokeWidth="0dp"
@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_tv_weather_default"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text_day"
                 android:textSize="25sp"
                 android:id="@+id/tv_main_weather_desc" />
 
@@ -140,7 +140,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:id="@+id/card_main_greeting"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/card_bg_day"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
         app:strokeWidth="0dp"
@@ -161,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_tv_welcome"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text_day"
                 android:textSize="25sp"
                 android:id="@+id/tv_main_welcome" />
 
@@ -173,7 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_tv_greeting"
-                android:textColor="@color/black"
+                android:textColor="@color/card_text_day"
                 android:textSize="25sp"
                 android:id="@+id/tv_main_greeting" />
 
