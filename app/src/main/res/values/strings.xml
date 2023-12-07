@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">FreshRoute</string>
 
-    <string name="anim_loading_route">당신만을 위한 최적의 길을 찾는 중이에요.</string>
     <string name="anim_loading_searchinput">검색 중입니다.</string>
+    <string name="anim_loading_anim_loading_searchresult">당신만을 위한 최적의 길을 찾는 중이에요.</string>
 
     <string name="noti_toast_no_permission">위치권한 부여가 필요합니다..</string>
 
