@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/weather_bg_day"
     tools:context=".activity.MainActivity">
 
     <com.google.android.material.card.MaterialCardView
@@ -50,55 +51,6 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/card_main_greeting"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
-        app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_main_search">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/main_tv_welcome"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:id="@+id/tv_main_welcome" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/main_tv_greeting"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:id="@+id/tv_main_greeting" />
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,8 +60,8 @@
         android:id="@+id/anim_main_weather"
         app:layout_constraintBottom_toTopOf="@id/layout_main_weather_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_main_greeting"
-        app:lottie_rawRes="@raw/anim_weather_sunny"
+        app:layout_constraintTop_toBottomOf="@id/card_main_search"
+        app:lottie_rawRes="@raw/anim_weather_storm"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
@@ -155,7 +107,7 @@
         android:layout_marginTop="25dp"
         android:id="@+id/card_main_weather"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="25dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
         app:strokeWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,6 +127,55 @@
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:id="@+id/tv_main_weather_desc" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/card_main_greeting"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_main_weather">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_tv_welcome"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:id="@+id/tv_main_welcome" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_tv_greeting"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:id="@+id/tv_main_greeting" />
 
         </LinearLayout>
 
