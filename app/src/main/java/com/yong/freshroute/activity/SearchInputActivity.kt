@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
@@ -24,6 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SearchInputActivity : AppCompatActivity() {
+    private lateinit var animLoading: LinearLayout
     private lateinit var btnSearch: MaterialButton
     private lateinit var edSearchKeyword: TextInputEditText
     private lateinit var recyclerSearchResult: RecyclerView
@@ -40,6 +42,7 @@ class SearchInputActivity : AppCompatActivity() {
         supportActionBar!!.title = getString(R.string.search_toolbar_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        animLoading = findViewById(R.id.anim_searchinput_loading)
         btnSearch = findViewById(R.id.btn_searchinput_search)
         edSearchKeyword = findViewById(R.id.et_searchinput_text)
         recyclerSearchResult = findViewById(R.id.recycler_searchinput_result)
@@ -61,6 +64,8 @@ class SearchInputActivity : AppCompatActivity() {
     private val btnListener = View.OnClickListener { view ->
         when(view.id) {
             R.id.btn_searchinput_search -> {
+                animLoading.visibility = View.VISIBLE
+
                 val inputStr = edSearchKeyword.text.toString()
                 if(inputStr.isEmpty()){
                     Toast.makeText(applicationContext, getString(R.string.searchinput_noti_wrong_input), Toast.LENGTH_LONG).show()
@@ -71,6 +76,7 @@ class SearchInputActivity : AppCompatActivity() {
                     .getLocalList("KakaoAK ${getString(R.string.KAKAO_REST_API_KEY)}", inputStr)
                     .enqueue(object: Callback<KakaoLocalList> {
                         override fun onResponse(call: Call<KakaoLocalList>, response: Response<KakaoLocalList>){
+                            animLoading.visibility = View.GONE
                             if(response.isSuccessful.not()) {
                                 Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
                                 return
@@ -102,6 +108,7 @@ class SearchInputActivity : AppCompatActivity() {
                         }
 
                         override fun onFailure(call: Call<KakaoLocalList>, t: Throwable) {
+                            animLoading.visibility = View.GONE
                             Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), t.message.toString()), Toast.LENGTH_LONG).show()
                         }
                     })
