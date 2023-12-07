@@ -1,11 +1,14 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -19,7 +22,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainAnimWeather: LottieAnimationView
     private lateinit var mainBtnSearch: LinearLayout
+    private lateinit var mainGreetCard: CardView
     private lateinit var mainGreetText: TextView
+    private lateinit var mainLayout: ConstraintLayout
+    private lateinit var mainWeatherCard: CardView
     private lateinit var mainWeatherDescText: TextView
     private lateinit var mainWeatherInfoText: TextView
     private lateinit var mainWeatherTempText: TextView
@@ -33,7 +39,10 @@ class MainActivity : AppCompatActivity() {
         mainBtnSearch.setOnClickListener(btnListener)
 
         mainAnimWeather = findViewById(R.id.anim_main_weather)
+        mainGreetCard = findViewById(R.id.card_main_greeting)
         mainGreetText = findViewById(R.id.tv_main_greeting)
+        mainLayout = findViewById(R.id.layout_main)
+        mainWeatherCard = findViewById(R.id.card_main_weather)
         mainWeatherDescText = findViewById(R.id.tv_main_weather_desc)
         mainWeatherInfoText = findViewById(R.id.tv_main_weather_info)
         mainWeatherTempText = findViewById(R.id.tv_main_weather_temp)
@@ -43,6 +52,8 @@ class MainActivity : AppCompatActivity() {
         mainGreetText.text = String.format(getString(R.string.main_tv_welcome_format), AuthUtil.getUserInfo()!!.Name)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+
+        updateColorTheme(false)
     }
 
     override fun onResume() {
@@ -53,6 +64,28 @@ class MainActivity : AppCompatActivity() {
         } else {
             // Update Weather
             updateWeatherView("Today will be sunny", 25, "SUNNY")
+        }
+    }
+
+    private fun updateColorTheme(isNight: Boolean) {
+        if(!isNight){
+            mainGreetCard.setCardBackgroundColor(getColor(R.color.card_bg_day))
+            mainWeatherCard.setCardBackgroundColor(getColor(R.color.card_bg_day))
+            mainLayout.background = ColorDrawable(getColor(R.color.weather_bg_day))
+            mainGreetText.setTextColor(getColor(R.color.card_text_day))
+            mainWeatherDescText.setTextColor(getColor(R.color.card_text_day))
+            mainWeatherInfoText.setTextColor(getColor(R.color.weather_text_day))
+            mainWeatherTempText.setTextColor(getColor(R.color.weather_text_day))
+            mainWelcomeText.setTextColor(getColor(R.color.card_text_day))
+        }else{
+            mainGreetCard.setCardBackgroundColor(getColor(R.color.card_bg_night))
+            mainWeatherCard.setCardBackgroundColor(getColor(R.color.card_bg_night))
+            mainLayout.background = ColorDrawable(getColor(R.color.weather_bg_night))
+            mainGreetText.setTextColor(getColor(R.color.card_text_night))
+            mainWeatherDescText.setTextColor(getColor(R.color.card_text_night))
+            mainWeatherInfoText.setTextColor(getColor(R.color.weather_text_night))
+            mainWeatherTempText.setTextColor(getColor(R.color.weather_text_night))
+            mainWelcomeText.setTextColor(getColor(R.color.card_text_night))
         }
     }
 
