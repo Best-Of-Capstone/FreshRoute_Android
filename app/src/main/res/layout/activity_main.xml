@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
-            android:text="--"
+            android:text=" "
             android:textAlignment="textEnd"
             android:textColor="@color/card_bg_day"
             android:textSize="30sp"
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
-            android:text="--"
+            android:text=" "
             android:textAlignment="textEnd"
             android:textColor="@color/card_bg_day"
             android:textSize="70sp"
@@ -172,7 +172,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/main_tv_greeting"
+                android:text=" "
                 android:textColor="@color/card_text_day"
                 android:textSize="25sp"
                 android:id="@+id/tv_main_greeting" />
