@@ -19,4 +19,11 @@
     <color name="route_orange">#FFA000</color>
     <color name="route_red">#E64A19</color>
     <color name="route_yellow">#AFB42B</color>
+
+    <color name="weather_bg_day">#c7f3ff</color>
+    <color name="weather_bg_night">#c9b6e4</color>
+    <color name="card_bg_day">#3d6cb9</color>
+    <color name="card_text_day">#c7f3ff</color>
+    <color name="card_bg_night">#723881</color>
+    <color name="card_text_night">#ffdcf7</color>
 </resources>
