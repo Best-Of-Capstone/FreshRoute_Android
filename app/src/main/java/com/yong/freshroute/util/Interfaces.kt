@@ -63,6 +63,11 @@ data class RouteApiResult(
     val routeList: Array<RouteApiResultItem>,
 )
 
+data class WeatherApiResultMsg(
+    val main: String,
+    val messages: Array<String>
+)
+
 data class WeatherApiResult(
     val id: Number,
     val main: String,
@@ -77,9 +82,4 @@ data class WeatherApiResult(
     val sea_level: Number,
     val grnd_level: Number,
     val weather_msg: WeatherApiResultMsg
-)
-
-data class WeatherApiResultMsg(
-    val main: String,
-    val messages: Array<String>
 )
