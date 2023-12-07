@@ -3,10 +3,13 @@ package com.yong.freshroute.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,9 +17,15 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.yong.freshroute.R
+import com.yong.freshroute.util.ApiResult
 import com.yong.freshroute.util.AuthUtil
 import com.yong.freshroute.util.PermissionUtil.checkLocationPermission
 import com.yong.freshroute.util.PermissionUtil.openAppInfo
+import com.yong.freshroute.util.WeatherApiClient
+import com.yong.freshroute.util.WeatherApiResult
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 
 class MainActivity : AppCompatActivity() {
@@ -64,6 +73,14 @@ class MainActivity : AppCompatActivity() {
         if(!checkLocationPermission(applicationContext)) {
             openAppInfo(applicationContext)
         } else {
+            if(checkLocationPermission(applicationContext)) {
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { curLocation : Location? ->
+                        if(curLocation != null) {
+                            getWeather(curLocation.latitude.toString(), curLocation.longitude.toString())
+                        }
+                    }
+            }
             updateWeatherView("Today will be sunny", 25, "SUNNY")
         }
     }
@@ -73,8 +90,32 @@ class MainActivity : AppCompatActivity() {
         return SimpleDateFormat("HH").format(System.currentTimeMillis()).toInt()
     }
 
+    private fun getWeather(lat: String, lng: String) {
+        WeatherApiClient.WeatherApiService.getWeather(lat, lng).enqueue(
+            object: Callback<ApiResult<WeatherApiResult>> {
+                override fun onResponse(
+                    call: Call<ApiResult<WeatherApiResult>>,
+                    response: Response<ApiResult<WeatherApiResult>>
+                ) {
+                    if(response.isSuccessful.not()) {
+                        Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
+                        return
+                    } else {
+                        updateWeatherView(response.body()!!.RESULT_DATA.description,
+                            response.body()!!.RESULT_DATA.temp.toInt(),
+                            response.body()!!.RESULT_DATA.main)
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResult<WeatherApiResult>>, t: Throwable) {
+                    Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), t.message.toString()), Toast.LENGTH_LONG).show()
+                }
+            }
+        )
+    }
+
     private fun updateColorTheme() {
-        if(getTime() < 18 || getTime() >= 6){
+        if(getTime() in 6..17){
             mainGreetCard.setCardBackgroundColor(getColor(R.color.card_bg_day))
             mainWeatherCard.setCardBackgroundColor(getColor(R.color.card_bg_day))
             mainLayout.background = ColorDrawable(getColor(R.color.weather_bg_day))
