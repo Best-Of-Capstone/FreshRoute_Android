@@ -1,5 +1,6 @@
 package com.yong.freshroute.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.yong.freshroute.R
 import com.yong.freshroute.util.AuthUtil
 import com.yong.freshroute.util.PermissionUtil.checkLocationPermission
 import com.yong.freshroute.util.PermissionUtil.openAppInfo
+import java.text.SimpleDateFormat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
 
-        updateColorTheme(false)
+        updateColorTheme()
     }
 
     override fun onResume() {
@@ -62,13 +64,17 @@ class MainActivity : AppCompatActivity() {
         if(!checkLocationPermission(applicationContext)) {
             openAppInfo(applicationContext)
         } else {
-            // Update Weather
             updateWeatherView("Today will be sunny", 25, "SUNNY")
         }
     }
 
-    private fun updateColorTheme(isNight: Boolean) {
-        if(!isNight){
+    @SuppressLint("SimpleDateFormat")
+    private fun getTime(): Int {
+        return SimpleDateFormat("HH").format(System.currentTimeMillis()).toInt()
+    }
+
+    private fun updateColorTheme() {
+        if(getTime() < 18 || getTime() >= 6){
             mainGreetCard.setCardBackgroundColor(getColor(R.color.card_bg_day))
             mainWeatherCard.setCardBackgroundColor(getColor(R.color.card_bg_day))
             mainLayout.background = ColorDrawable(getColor(R.color.weather_bg_day))
