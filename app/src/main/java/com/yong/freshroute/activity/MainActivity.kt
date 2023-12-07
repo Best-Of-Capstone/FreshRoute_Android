@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
                         return
                     } else {
-                        Log.d("WEATHER", response.body()!!.RESULT_DATA.toString())
+                        updateWeatherAnim(response.body()!!.RESULT_DATA.id.toInt() / 100)
                         updateWeatherView(response.body()!!.RESULT_DATA.weather_msg.messages[0],
                             response.body()!!.RESULT_DATA.temp.toDouble(),
                             response.body()!!.RESULT_DATA.weather_msg.main)
@@ -136,8 +136,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateWeatherAnim(type: Int) {
+        if(getTime() in 6..17) {
+            when(type) {
+                2-> mainAnimWeather.setAnimation(R.raw.anim_weather_storm)
+                3-> mainAnimWeather.setAnimation(R.raw.anim_weather_rain)
+                5-> mainAnimWeather.setAnimation(R.raw.anim_weather_rain)
+                6-> mainAnimWeather.setAnimation(R.raw.anim_weather_snow)
+                7-> mainAnimWeather.setAnimation(R.raw.anim_weather_fog)
+                8-> mainAnimWeather.setAnimation(R.raw.anim_weather_sunny)
+            }
+        } else {
+            Log.d("WEATHER", type.toString())
+            when(type) {
+                2-> mainAnimWeather.setAnimation(R.raw.anim_weather_storm_night)
+                3-> mainAnimWeather.setAnimation(R.raw.anim_weather_rain_night)
+                5-> mainAnimWeather.setAnimation(R.raw.anim_weather_rain_night)
+                6-> mainAnimWeather.setAnimation(R.raw.anim_weather_snow_night)
+                7-> mainAnimWeather.setAnimation(R.raw.anim_weather_fog_night)
+                8-> mainAnimWeather.setAnimation(R.raw.anim_weather_sunny_night)
+            }
+        }
+        mainAnimWeather.playAnimation()
+    }
+
     private fun updateWeatherView(desc: String, temp: Double, type: String) {
-        mainAnimWeather.setAnimation(R.raw.anim_weather_sunny)
         mainWeatherDescText.text = desc
         mainWeatherInfoText.text = type
         mainWeatherTempText.text = String.format("%.1f°C", temp)
