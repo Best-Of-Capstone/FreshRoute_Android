@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
             }
-            updateWeatherView("Today will be sunny", 25, "SUNNY")
         }
     }
 
