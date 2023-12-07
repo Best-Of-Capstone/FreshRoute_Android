@@ -97,11 +97,13 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/search_title_fresh_transportation" />
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:id="@+id/toggle_search_fresh_transportation"
             app:checkedButton="@id/btn_search_transportation_all"
             app:selectionRequired="true"
@@ -136,9 +138,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:text="@string/search_title_fresh_congestion" />
 
         <com.google.android.material.slider.Slider
