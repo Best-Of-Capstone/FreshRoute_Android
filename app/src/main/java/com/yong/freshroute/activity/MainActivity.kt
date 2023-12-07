@@ -100,9 +100,10 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
                         return
                     } else {
-                        updateWeatherView(response.body()!!.RESULT_DATA.description,
-                            response.body()!!.RESULT_DATA.temp.toInt(),
-                            response.body()!!.RESULT_DATA.main)
+                        Log.d("WEATHER", response.body()!!.RESULT_DATA.toString())
+                        updateWeatherView(response.body()!!.RESULT_DATA.weather_msg.messages[0],
+                            response.body()!!.RESULT_DATA.temp.toDouble(),
+                            response.body()!!.RESULT_DATA.weather_msg.main)
                     }
                 }
 
@@ -135,11 +136,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateWeatherView(desc: String, temp: Int, type: String) {
+    private fun updateWeatherView(desc: String, temp: Double, type: String) {
         mainAnimWeather.setAnimation(R.raw.anim_weather_sunny)
         mainWeatherDescText.text = desc
         mainWeatherInfoText.text = type
-        mainWeatherTempText.text = temp.toString()
+        mainWeatherTempText.text = String.format("%.1f", temp)
     }
 
     private val btnListener = View.OnClickListener { view ->
