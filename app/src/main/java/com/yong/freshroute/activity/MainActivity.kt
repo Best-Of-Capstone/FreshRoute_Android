@@ -1,7 +1,6 @@
 package com.yong.freshroute.activity
 
 import android.content.Intent
-import android.location.Location
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
