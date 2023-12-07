@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         mainAnimWeather.setAnimation(R.raw.anim_weather_sunny)
         mainWeatherDescText.text = desc
         mainWeatherInfoText.text = type
-        mainWeatherTempText.text = String.format("%.1f", temp)
+        mainWeatherTempText.text = String.format("%.1f°C", temp)
     }
 
     private val btnListener = View.OnClickListener { view ->
