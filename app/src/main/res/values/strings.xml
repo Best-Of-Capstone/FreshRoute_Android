@@ -9,6 +9,9 @@
     <string name="detail_recycler_route_description">거리 : %.1fm / 소요시간 : %.1f초</string>
     <string name="detail_recycler_route_title">%s (%s)</string>
 
+    <string name="list_recycler_route_description">거리 : %.1fm / 소요시간 : %.1f초</string>
+    <string name="list_recycler_route_title">%s번 경로</string>
+
     <string name="login_btn_google">Google로 로그인하기</string>
     <string name="login_noti_fail">로그인에 실패하였습니다.</string>
 
