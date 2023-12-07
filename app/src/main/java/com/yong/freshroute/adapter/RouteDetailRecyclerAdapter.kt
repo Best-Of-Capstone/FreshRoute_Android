@@ -38,7 +38,7 @@ class RouteDetailRecyclerAdapter(dataList: List<RouteApiResultItemDataStep>): Ad
         val listItem = dataList[position]
 
         if(listItem.distance != 0 && listItem.duration != 0){
-            holder.tvDescription.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_description), listItem.distance.toDouble(), listItem.duration.toDouble())
+            holder.tvDescription.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_description), listItem.distance.toDouble() / 1000, listItem.duration.toDouble() / 60, listItem.duration.toDouble() % 60)
         }
         holder.tvTitle.text = String.format(holder.itemView.resources.getString(R.string.detail_recycler_route_title), listItem.name, listItem.type)
         holder.itemView.setOnClickListener { view ->
