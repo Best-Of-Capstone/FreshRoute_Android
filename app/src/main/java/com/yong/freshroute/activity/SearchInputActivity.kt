@@ -82,6 +82,8 @@ class SearchInputActivity : AppCompatActivity() {
                                 return
                             }else{
                                 val resultList = response.body()!!.dataList
+                                resultList.removeIf{it.localAddress.isEmpty()}
+
                                 if(resultList.isEmpty()){
                                     Toast.makeText(applicationContext, getString(R.string.searchinput_noti_no_result), Toast.LENGTH_LONG).show()
                                     return
