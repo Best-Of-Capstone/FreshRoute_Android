@@ -16,7 +16,7 @@ data class KakaoLocalItem(
 )
 
 data class KakaoLocalList(
-    @SerializedName("documents") val dataList: List<KakaoLocalItem>
+    @SerializedName("documents") val dataList: MutableList<KakaoLocalItem>
 )
 
 interface KakaoLocalAPI {
