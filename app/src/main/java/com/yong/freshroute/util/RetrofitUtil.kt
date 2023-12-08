@@ -45,3 +45,23 @@ object RouteApiClient {
         retrofitClient.create(RouteApi::class.java)
     }
 }
+
+object WeatherApiClient {
+    private val okHttpClient: OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(120, TimeUnit.SECONDS)
+        .readTimeout(120, TimeUnit.SECONDS)
+        .writeTimeout(120, TimeUnit.SECONDS)
+        .build()
+
+    private val gsonBuilder = GsonBuilder().setLenient().create()
+
+    private val retrofitClient = Retrofit.Builder()
+        .baseUrl("https://freshroute.dev-lr.com/")
+        .addConverterFactory(GsonConverterFactory.create(gsonBuilder))
+        .client(okHttpClient)
+        .build()
+
+    val WeatherApiService: WeatherApi by lazy {
+        retrofitClient.create(WeatherApi::class.java)
+    }
+}

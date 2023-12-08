@@ -62,3 +62,24 @@ data class RouteApiResultItem(
 data class RouteApiResult(
     val routeList: Array<RouteApiResultItem>,
 )
+
+data class WeatherApiResultMsg(
+    val main: String,
+    val messages: Array<String>
+)
+
+data class WeatherApiResult(
+    val id: Number,
+    val main: String,
+    val description: String,
+    val icon: String,
+    val temp: Number,
+    val feels_like: Number,
+    val temp_min: Number,
+    val temp_max: Number,
+    val pressure: Number,
+    val humidity: Number,
+    val sea_level: Number,
+    val grnd_level: Number,
+    val weather_msg: WeatherApiResultMsg
+)

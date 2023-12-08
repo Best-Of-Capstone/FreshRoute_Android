@@ -31,3 +31,11 @@ interface RouteApi {
     @POST("findRouter")
     fun getRouteList(@Body coordData: RouteApiInput): Call<ApiResult<RouteApiResult>>
 }
+
+interface WeatherApi {
+    @GET("weather/getWeatherInfo")
+    fun getWeather(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String
+    ): Call<ApiResult<WeatherApiResult>>
+}

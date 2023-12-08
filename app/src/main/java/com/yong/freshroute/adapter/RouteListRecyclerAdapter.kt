@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.yong.freshroute.R
 import com.yong.freshroute.util.RouteApiResultItem
+import java.util.Locale
 
 class RouteListRecyclerAdapter(dataList: List<RouteApiResultItem>): Adapter<RouteListRecyclerAdapter.ViewHolder>() {
     private val dataList: List<RouteApiResultItem>
@@ -19,15 +20,11 @@ class RouteListRecyclerAdapter(dataList: List<RouteApiResultItem>): Adapter<Rout
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val tvDescription: TextView
-        val tvDistance: TextView
-        val tvDuration: TextView
-        val tvID: TextView
+        val tvTitle: TextView
 
         init {
             tvDescription = view.findViewById(R.id.recycler_item_routelist_description)
-            tvDistance = view.findViewById(R.id.recycler_item_routelist_distance)
-            tvDuration = view.findViewById(R.id.recycler_item_routelist_duration)
-            tvID = view.findViewById(R.id.recycler_item_routelist_id)
+            tvTitle = view.findViewById(R.id.recycler_item_routelist_title)
         }
     }
 
@@ -40,10 +37,8 @@ class RouteListRecyclerAdapter(dataList: List<RouteApiResultItem>): Adapter<Rout
 
     override fun onBindViewHolder(holder: RouteListRecyclerAdapter.ViewHolder, position: Int) {
         val listItem = dataList[position]
-        holder.tvDescription.text = listItem.description
-        holder.tvDistance.text = listItem.route.distance
-        holder.tvDuration.text = listItem.route.duration
-        holder.tvDuration.text = String.format("Route %s", listItem.id)
+        holder.tvDescription.text = String.format(holder.itemView.context.getString(R.string.list_recycler_route_description), listItem.route.distance.toDouble() / 1000, listItem.route.duration.toDouble() / 60, listItem.route.duration.toDouble() % 60)
+        holder.tvTitle.text = String.format(holder.itemView.context.getString(R.string.list_recycler_route_title), listItem.id)
         holder.itemView.setOnClickListener { view ->
             itemClick?.onClick(view, position)
         }

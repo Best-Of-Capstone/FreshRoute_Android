@@ -59,6 +59,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.firebaseui:firebase-ui-auth:8.0.2")
 
+    implementation("com.airbnb.android:lottie:6.2.0")
     implementation("com.kakao.maps.open:android:2.6.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")

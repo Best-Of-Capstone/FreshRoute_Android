@@ -1,38 +1,45 @@
 <resources>
     <string name="app_name">FreshRoute</string>
 
-    <string name="noti_toast_no_permission">Location Permission is Needed.</string>
+    <string name="anim_loading_searchinput">검색 중입니다.</string>
+    <string name="anim_loading_searchresult">당신만을 위한 최적의 길을 찾는 중이에요.</string>
 
-    <string name="detail_recycler_route_description">Distance : %.1fm / Duration : %.1fs</string>
+    <string name="noti_toast_no_permission">위치권한 부여가 필요합니다..</string>
+
+    <string name="detail_recycler_route_description">거리 : %.1fkm / 소요시간 : %.0f분 %.0f초</string>
     <string name="detail_recycler_route_title">%s (%s)</string>
 
-    <string name="login_btn_google">Login with Google</string>
-    <string name="login_noti_fail">Failed to Login</string>
+    <string name="list_recycler_route_description">거리 : %.1fkm / 소요시간 : %.0f분 %.0f초</string>
+    <string name="list_recycler_route_title">%s번 경로</string>
 
-    <string name="main_tv_search">Search</string>
-    <string name="main_tv_welcome">Welcome!</string>
-    <string name="main_tv_welcome_format">Hi! How are you today, %s?</string>
+    <string name="login_btn_google">Google로 로그인하기</string>
+    <string name="login_noti_fail">로그인에 실패하였습니다.</string>
 
-    <string name="search_btn_done">Search !</string>
-    <string name="search_btn_input_from">From Where?</string>
-    <string name="search_btn_input_to">To Where?</string>
-    <string name="search_btn_transportation_all">All</string>
-    <string name="search_btn_transportation_bus">Bus</string>
-    <string name="search_btn_transportation_subway">Subway</string>
-    <string name="search_title_fresh_congestion">Congestion</string>
-    <string name="search_title_fresh_transportation">Preferred Transportation</string>
-    <string name="search_toolbar_title">Find Route</string>
+    <string name="main_tv_search">나만을 위한 길찾기</string>
+    <string name="main_tv_weather_default">날씨 정보를 불러오는 중입니다…</string>
+    <string name="main_tv_welcome">반갑습니다!</string>
+    <string name="main_tv_welcome_format">오늘도 즐거운 하루 되세요 %s님!</string>
 
-    <string name="searchinput_btn_search">Search</string>
+    <string name="search_btn_done">검색하기 !</string>
+    <string name="search_btn_input_from">어디에서 출발하시나요?</string>
+    <string name="search_btn_input_to">어디로 가시나요?</string>
+    <string name="search_btn_transportation_all">모든 대중교통</string>
+    <string name="search_btn_transportation_bus">버스</string>
+    <string name="search_btn_transportation_subway">지하철</string>
+    <string name="search_title_fresh_congestion">혼잡도 수준</string>
+    <string name="search_title_fresh_transportation">선호 대중교통</string>
+    <string name="search_toolbar_title">경로 검색</string>
+
+    <string name="searchinput_btn_search">검색하기 !</string>
     <string name="searchinput_noti_error">Error: %s</string>
-    <string name="searchinput_noti_no_result">No Search Result</string>
-    <string name="searchinput_noti_wrong_input">Wrong Input</string>
+    <string name="searchinput_noti_no_result">검색 결과가 없습니다.</string>
+    <string name="searchinput_noti_wrong_input">입력이 올바르지 않습니다.</string>
 
-    <string name="searchresult_toolbar_title">Recommended Routes</string>
+    <string name="searchresult_toolbar_title">추천 경로</string>
 
-    <string name="welcome_btn_location_permission">Grant Location Permission</string>
-    <string name="welcome_btn_next">Next</string>
+    <string name="welcome_btn_location_permission">위치권한 부여하기</string>
+    <string name="welcome_btn_next">다음</string>
 
-    <string name="d_main_icon_search">Search Icon</string>
-    <string name="d_search_icon_gps">GPS Icon</string>
+    <string name="d_main_icon_search">검색_아이콘</string>
+    <string name="d_search_icon_gps">GPS_아이콘</string>
 </resources>

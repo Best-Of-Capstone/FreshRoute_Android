@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -28,6 +29,7 @@ class SearchResultActivity : AppCompatActivity() {
     private var locationDataFrom: LocationData? = null
     private var locationDataTo: LocationData? = null
 
+    private lateinit var animLoading: LinearLayout
     private lateinit var recyclerSearchResult: RecyclerView
     private lateinit var tvInputFrom: TextView
     private lateinit var tvInputTo: TextView
@@ -41,6 +43,7 @@ class SearchResultActivity : AppCompatActivity() {
         supportActionBar!!.title = getString(R.string.searchresult_toolbar_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        animLoading = findViewById(R.id.anim_searchresult_loading)
         recyclerSearchResult = findViewById(R.id.recycler_searchresult_result)
         tvInputFrom = findViewById(R.id.tv_searchresult_input_from)
         tvInputTo = findViewById(R.id.tv_searchresult_input_to)
@@ -67,6 +70,7 @@ class SearchResultActivity : AppCompatActivity() {
             .getRouteList(locationData)
             .enqueue(object: Callback<ApiResult<RouteApiResult>> {
                 override fun onResponse(call: Call<ApiResult<RouteApiResult>>, response: Response<ApiResult<RouteApiResult>>){
+                    animLoading.visibility = View.GONE
                     if(response.isSuccessful.not()) {
                         Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), response.code().toString()), Toast.LENGTH_LONG).show()
                         return
@@ -86,6 +90,7 @@ class SearchResultActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<ApiResult<RouteApiResult>>, t: Throwable) {
+                    animLoading.visibility = View.GONE
                     Toast.makeText(applicationContext, String.format(getString(R.string.searchinput_noti_error), t.message.toString()), Toast.LENGTH_LONG).show()
                 }
             })
